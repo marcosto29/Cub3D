@@ -6,7 +6,17 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 19:23:05 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/02 19:41:37 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/03 16:09:02 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3d.h"
+
+void store_infotmation(int fd)
+{
+    
+}
+int check_map(int fd)
+{
+    
+}
