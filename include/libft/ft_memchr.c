@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 12:50:01 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/04/21 10:40:48 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/03 16:29:01 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	while (i < n)
 	{
 		if (((char *)s)[i] == (char)c)
-			return ((void *)((char *)s + i));
+			return ((void *)(char *)s + i);
 		i++;
 	}
 	return (NULL);
