@@ -6,7 +6,7 @@
 #    By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/02 15:36:39 by aosset-o          #+#    #+#              #
-#    Updated: 2026/03/03 16:09:33 by aosset-o         ###   ########.fr        #
+#    Updated: 2026/03/04 16:28:45 by aosset-o         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ RED = \033[0;31m
 RESET = \033[0m
 
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror
+
+CFLAGS=-Wall -Wextra -Werror -g -O0 -fno-omit-frame-pointer
 
 LIBFT_PATH = include/libft
 MLX_PATH = include/mlx
@@ -24,7 +25,7 @@ LIBFT = $(LIBFT_PATH)/libft.a
 MLX = $(MLX_PATH)/libmlx.a
 
 NAME = cub3d
-SRC = src/main.c #src/parce/parce.c
+SRC = src/main.c src/parse/parse.c src/parse/parse_utils.c
 
 OBJ = $(SRC:.c=.o)
 

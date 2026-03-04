@@ -6,12 +6,12 @@
 #    By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/03 16:12:21 by aosset-o          #+#    #+#              #
-#    Updated: 2026/03/03 16:15:17 by aosset-o         ###   ########.fr        #
+#    Updated: 2026/03/04 15:52:15 by aosset-o         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=cc
-CFLAGS=-Wall -Werror -Wextra
+CFLAGS=-Wall -Werror -Wextra -fPIE
 
 NAME = libft.a
 SRC = 	ft_isalpha.c ft_isdigit.c ft_isalnum.c \

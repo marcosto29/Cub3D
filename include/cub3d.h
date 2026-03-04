@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 17:00:22 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/03 17:49:01 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/04 17:56:31 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,7 @@ typedef struct s_textures
     char *path;
 }t_textures;
 void	free_double(char **pointer);
+int check_textures(int fd,  t_textures **textures);
+void init_textures(t_textures **imgs);
+void free_img(t_textures **imgs);
 #endif

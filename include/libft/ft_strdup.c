@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 11:54:10 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/04/12 12:44:26 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/04 18:34:32 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,13 @@
 
 char	*ft_strdup(const char *s)
 {
-	char	*str;
-	int		i;
+	size_t	allocate_memory;
+	char	*pt_return;
 
-	str = (char *)malloc(ft_strlen((char *)s) + 1);
-	i = 0;
-	if (str == NULL)
-		return (str);
-	while (s[i])
-	{
-		str[i] = s[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	allocate_memory = ft_strlen(s);
+	pt_return = ft_calloc(sizeof(char), allocate_memory + 1);
+	if (!pt_return)
+		return (NULL);
+	ft_memcpy(pt_return, s, allocate_memory);
+	return (pt_return);
 }
