@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/02 17:00:22 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/03 17:49:01 by aosset-o         ###   ########.fr       */
+/*   Created: 2026/03/03 17:33:20 by aosset-o          #+#    #+#             */
+/*   Updated: 2026/03/03 17:33:51 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-#include "libft/libft.h"
-#include "mlx/mlx.h"
+#include "cub3d.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
-
-typedef struct s_textures
+void	free_double(char **pointer)
 {
-    char *type;
-    char *path;
-}t_textures;
-void	free_double(char **pointer);
-#endif
+	char	**aux;
+
+	if (!pointer || !*pointer)
+		return ;
+	aux = pointer;
+	while (*aux)
+	{
+		free(*aux);
+		aux++;
+	}
+	free(pointer);
+	pointer = NULL;
+}
