@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 13:59:04 by matoledo          #+#    #+#             */
-/*   Updated: 2026/03/04 18:06:03 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/09 18:05:12 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,15 @@ int	main(int argc, char *argv[])
 	fd = open(argv[1], O_RDONLY);
 	if(fd == -1)
 		return(ft_putendl_fd("Map does not exist",1), 1);
-	t_textures **imgs;
-	imgs = ft_calloc(5, sizeof(t_textures *));
-	init_textures(imgs);
-	if(check_textures(fd, imgs) == 1)
-		return(close(fd), 1);
+	t_data *data;
+	data = ft_calloc(2, sizeof(t_data));
+	init_data(data);
+	read_map(data, fd);
 	for(int i = 0; i < 4; i++)
-		printf("the orientation is: %s, and the texture is: %s", imgs[i]->type, imgs[i]->path);
+	 	printf("the orientation is: %s, and the texture is: %s", data->imgs[i]->type, data->imgs[i]->path);
+	for(int i = 0; i < 2; i++)
+	 	printf("the orientation is: %s, and the texture is: %s", data->colors[i]->type, data->colors[i]->path);
+	free_data(data);
 	close(fd);
-	free_img(imgs);
 	return(0);
 }

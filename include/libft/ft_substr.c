@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 12:50:50 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/04/23 16:27:55 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/09 17:20:17 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	i = 0;
 	if (start > ft_strlen(s))
 	{
-		str = malloc(1 * sizeof(char));
+		str = ft_calloc(1, sizeof(char));
 		if (str == NULL)
 			return (str);
 		str[0] = '\0';
@@ -29,7 +29,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	if ((start + len) > ft_strlen(s))
 		len = ft_strlen(s) - start;
-	str = malloc((len + 1) * sizeof(char));
+	str = ft_calloc((len + 1), sizeof(char));
 	if (str == NULL)
 		return (str);
 	while (i < len)

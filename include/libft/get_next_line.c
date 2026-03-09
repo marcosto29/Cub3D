@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 16:15:35 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/04 19:13:02 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/09 15:49:54 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ char	*get_next_line(int fd)
 	int			bytes_read;
 	char		*pt_return;
 
-	if (fd == -1 && pt_buffer)
-		return (free(pt_buffer), pt_buffer = NULL, NULL);
+	if (fd == -1)
+		return (free_buffer(pt_buffer), NULL);
 	bytes_read = 0;
 	if (!pt_buffer || !*pt_buffer)
 	{
