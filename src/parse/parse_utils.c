@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/02 17:00:22 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/10 09:26:25 by aosset-o         ###   ########.fr       */
+/*   Created: 2026/03/10 09:24:13 by aosset-o          #+#    #+#             */
+/*   Updated: 2026/03/10 09:39:16 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-#include "libft/libft.h"
-#include "mlx/mlx.h"
-#include "parse.h"
+#include "cub3d.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
+int check_extension(char *av1)
+{
+    char **split;
 
-
-#endif
+    split = ft_split(av1, '.');
+    if(ft_strncmp(split[1], "cub", 4) != 0)
+    {
+        free_double(split);
+        return(1);
+    }
+    free_double(split);
+    return(0);
+}

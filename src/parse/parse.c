@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 19:23:05 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/09 18:58:00 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/10 09:50:02 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ void read_map(t_data *data, int fd)
     
     aux = get_next_line(fd);
     aux = skip_empty(aux, fd);
-    if(aux[0] == 'C' || aux[0] == 'F')
+    if(aux && (aux[0] == 'C' || aux[0] == 'F'))
         aux = store_textures(fd, data->colors, aux, 2);
     else
         aux = store_textures(fd, data->imgs, aux, 4);
     aux = skip_empty(aux, fd);
-    if(aux[0] == 'C' || aux[0] == 'F')
+    if(aux && (aux[0] == 'C' || aux[0] == 'F'))
         aux = store_textures(fd, data->colors, aux, 2);
     else
         aux = store_textures(fd, data->imgs, aux, 4);
