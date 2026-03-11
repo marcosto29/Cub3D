@@ -1,10 +1,12 @@
 C 164,157,79
 F 136,123,55
 
-NO assets/textures/img_no.xmp
+F assets/textures/img_no.xmp
 SO assets/textures/img_so.xmp
 WE assets/textures/img_we.xmp
 EA assets/textures/img_ea.xmp
+
+
 
 11111111111111111111111111111
 10000000001100000000000000001

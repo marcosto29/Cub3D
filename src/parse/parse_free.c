@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 17:33:20 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/09 18:05:37 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/11 19:05:42 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void free_data(t_data *data)
 {
 	if(data->imgs)
 		free_img(data->imgs);
-	if(data->colors)
-		free_img(data->colors);
+	if(data->map)
+		free_double(data->map);
 	free(data);
 }
