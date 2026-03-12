@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 13:59:04 by matoledo          #+#    #+#             */
-/*   Updated: 2026/03/11 19:46:57 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/12 18:26:36 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int	main(int argc, char *argv[])
 	init_data(data, argv[1]);
 	if(data->map_len > 6)
 		read_map(data, fd);
-	// for(int i = 0; i < 4; i++)
-	//  	printf("the orientation is: %s, and the texture is: %s", data->imgs[i]->type, data->imgs[i]->path);
-	// for(int j = 0; j < 3; j++)
-	//   	printf("the floor color is: %i, and the ceiling color is: %i\n", data->floor[j], data->ceiling[j]);
-	// for (int k = 0; data->map[k]; k++)
-	// 	printf("%s\n", data->map[k]);
+	for(int i = 0; i < 4; i++)
+	 	printf("the orientation is: %s, and the texture is: %s", data->imgs[i]->type, data->imgs[i]->path);
+	for(int j = 0; j < 3; j++)
+	  	printf("the floor color is: %i, and the ceiling color is: %i\n", data->floor[j], data->ceiling[j]);
+	for (int k = 0; data->map[k]; k++)
+		printf("%s\n", data->map[k]);
 	free_data(data);
 	close(fd);
 	return(0);

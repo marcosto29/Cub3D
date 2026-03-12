@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 16:02:10 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/11 19:47:51 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/12 18:38:35 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ void init_data(t_data *data, char *av1)
 	data->map_len = map_size(fd2);
 	close(fd2);
 	if(data->map_len > 6)
-	{
 		data->map = ft_calloc(data->map_len + 1, sizeof(char *));
-		data->imgs = ft_calloc(5, sizeof(t_textures *));
-		init_textures(data->imgs, 4);
-	}
+	data->imgs = ft_calloc(5, sizeof(t_textures *));
+	init_textures(data->imgs, 4);
+	data->colors = ft_calloc(3, sizeof(t_textures *));
+	init_textures(data->colors, 2);
 }
