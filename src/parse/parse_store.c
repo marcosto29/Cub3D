@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:24:16 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/12 18:41:43 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/16 19:11:39 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	*store_textures(int fd, t_textures **data, char *aux, int len)
 		if (!args || !args[0] || !args[1])
 		{
 			ft_putendl_fd("textures does not exit.", 1);
+			if(args)
+				free_double(args);
 			return (aux);
 		}
 		data[i]->type = ft_strdup(args[0]);
@@ -91,15 +93,18 @@ void	read_map(t_data *data, int fd)
 	else
 		aux = store_textures(fd, data->imgs, aux, 4);
 	aux = skip_empty(aux, fd);
-	if (aux && (aux[0] == 'C' || aux[0] == 'F') && !data->colors)
+	if (aux && (aux[0] == 'C' || aux[0] == 'F') && !data->colors[0]->type)
 		aux = store_textures(fd, data->colors, aux, 2);
 	else
 		aux = store_textures(fd, data->imgs, aux, 4);
     aux = skip_empty(aux, fd);
     aux = store_map(data->map, aux, fd);
-    if(aux)
+	if(data->colors[0]->path && data->colors[1]->path)
+	{
+		store_colors(data->colors[0], data, data->colors[0]->type[0]);
+		store_colors(data->colors[1], data, data->colors[1]->type[0]);
+	}
+	if(aux)
         free(aux);
-    store_colors(data->colors[0], data, data->colors[0]->type[0]);
-    store_colors(data->colors[1], data, data->colors[1]->type[0]);
 	get_next_line(-1);
 }
