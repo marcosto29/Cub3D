@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 16:15:35 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/10 10:53:26 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/19 18:35:32 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*read_buffer(int fd, int *bytes_read)
 	if (!pt_buffer)
 		return (NULL);
 	*bytes_read = (int)read(fd, pt_buffer, BUFFER_SIZE);
-	if (*bytes_read == -1 || (*bytes_read == 0 && (!pt_buffer || !*pt_buffer)))
+	if (*bytes_read == -1)
 		return (free(pt_buffer), NULL);
 	return (pt_buffer);
 }

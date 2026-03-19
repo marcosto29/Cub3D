@@ -6,12 +6,20 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 13:59:04 by matoledo          #+#    #+#             */
-/*   Updated: 2026/03/16 19:13:25 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/19 18:42:48 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+void ft_exit(t_data *data, int fd, int status)
+{
+	if(data)
+		free_data(data);
+	if(fd != 0)
+		close(fd);
+	exit(status);
+}
 int	main(int argc, char *argv[])
 {
 	if(argc != 2)
@@ -35,7 +43,8 @@ int	main(int argc, char *argv[])
 		for (int k = 0; data->map[k]; k++)
 			printf("%s\n", data->map[k]);
 	}
-	free_data(data);
-	close(fd);
+	if(check_textures(data) != 0 || check_colors(data) != 0 || check_map(data) != 0)
+		ft_exit(data, fd, 1);
+	ft_exit(data, fd, 0);
 	return(0);
 }

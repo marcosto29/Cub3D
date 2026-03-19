@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 16:02:10 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/12 18:38:35 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/19 18:31:14 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,14 @@ int map_size(int fd)
 	aux = skip_empty(aux, fd);
 	aux = skip_imgs(aux, fd);
 	aux = skip_empty(aux, fd);
-	while (aux && aux[0] != '\n')
+	while (aux  && aux[0] != '\n')
 	{
+		map_len++;
 		free(aux);
 		aux = get_next_line(fd);
-		map_len++;
 	}
-	if(aux)
-		free(aux);
 	get_next_line(-1);
-	return(map_len);
+	return (map_len);
 }
 void init_textures(t_textures **imgs, int len)
 {
