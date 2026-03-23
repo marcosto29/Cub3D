@@ -6,7 +6,7 @@
 #    By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/19 13:17:46 by matoledo          #+#    #+#              #
-#    Updated: 2026/03/21 17:26:55 by matoledo         ###   ########.fr        #
+#    Updated: 2026/03/23 07:47:41 by matoledo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ LFLAGS =   -L./include/mlx -lmlx -lXext -lX11 -lm
 
 IFLAGS = -Iinclude/mlx
 
-SRCS = main.c 
+SRCS = main.c free.c initialize.c\
+		events/key_events.c events/mouse_events.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -31,11 +32,11 @@ $(NAME): $(OBJS)
 	@$(CC) -o $(NAME) $(OBJS) $(LFLAGS)
 
 %.o: %.c
-	@$(CC) -c $(IFLAGS) $(CFLAGS) $< 
+	@$(CC) -c $(IFLAGS) $(CFLAGS) $< -o $@
 
 clean:
 	@$(MAKE) -C ./include/mlx clean
-	@rm -rf *.o
+	@rm -rf $(OBJS)
 
 fclean: clean
 	@$(MAKE) -C ./include/mlx clean
