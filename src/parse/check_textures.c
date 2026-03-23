@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 19:45:22 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/23 19:00:26 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/23 19:07:55 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	check_textures(t_data *data)
 		return (1);
 	return (0);
 }
+
 int	check_colors_type(t_textures **imgs)
 {
 	int	i;
@@ -77,8 +78,7 @@ int	check_colors_type(t_textures **imgs)
 		while (imgs[j] && imgs[j]->type)
 		{
 			if (ft_strncmp(imgs[j]->type, imgs[i]->type, 2) == 0 && i != j)
-				return (ft_putendl_fd("Duplicate color identifiers.", 1),
-					1);
+				return (ft_putendl_fd("Duplicate color identifiers.", 1), 1);
 			j++;
 		}
 		j = 0;
@@ -86,9 +86,10 @@ int	check_colors_type(t_textures **imgs)
 	}
 	return (0);
 }
+
 int	check_colors(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (check_colors_type(data->colors) != 0)

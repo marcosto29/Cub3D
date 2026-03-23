@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 17:33:20 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/12 18:42:10 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/23 19:07:07 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	free_double(char **pointer)
 	free(pointer);
 	pointer = NULL;
 }
-void free_img(t_textures **imgs)
+
+void	free_img(t_textures **imgs)
 {
 	int	i;
 
@@ -45,13 +46,13 @@ void free_img(t_textures **imgs)
 	imgs = NULL;
 }
 
-void free_data(t_data *data)
+void	free_data(t_data *data)
 {
-	if(data->imgs)
+	if (data->imgs)
 		free_img(data->imgs);
-	if(data->colors)
+	if (data->colors)
 		free_img(data->colors);
-	if(data->map)
+	if (data->map)
 		free_double(data->map);
 	free(data);
 }

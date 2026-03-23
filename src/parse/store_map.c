@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:24:16 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/19 18:39:01 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/23 19:04:48 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*store_textures(int fd, t_textures **data, char *aux, int len)
 		if (!args || !args[0] || !args[1])
 		{
 			ft_putendl_fd("textures does not exit.", 1);
-			if(args)
+			if (args)
 				free_double(args);
 			return (aux);
 		}
@@ -38,49 +38,49 @@ char	*store_textures(int fd, t_textures **data, char *aux, int len)
 	return (aux);
 }
 
-void store_colors(t_textures *colors, t_data *data, char c)
+void	store_colors(t_textures *colors, t_data *data, char c)
 {
-    char **splitted_colors;
-    int i;
+	char	**splitted_colors;
+	int		i;
 
-	if(c != 'C' && c != 'F')
+	if (c != 'C' && c != 'F')
 	{
 		data->floor[0] = -1;
 		data->ceiling[0] = -1;
-		return;
+		return ;
 	}
-    i = 0;
-    splitted_colors = ft_split(colors->path, ',');
-    while (splitted_colors[i] && i < 3)
-    {
-        if(c == 'F')
-            data->floor[i] = ft_atoi(splitted_colors[i]);
-        else if(c == 'C')
-            data->ceiling[i] = ft_atoi(splitted_colors[i]);
-        i++;
-    }
-	if(splitted_colors[3])
+	i = 0;
+	splitted_colors = ft_split(colors->path, ',');
+	while (splitted_colors[i] && i < 3)
+	{
+		if (c == 'F')
+			data->floor[i] = ft_atoi(splitted_colors[i]);
+		else if (c == 'C')
+			data->ceiling[i] = ft_atoi(splitted_colors[i]);
+		i++;
+	}
+	if (splitted_colors[3])
 	{
 		data->floor[0] = -1;
 		data->ceiling[0] = -1;
 	}
-    free_double(splitted_colors); 
+	free_double(splitted_colors);
 }
 
-char* store_map(char **map, char *aux, int fd)
+char	*store_map(char **map, char *aux, int fd)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (aux && aux[0] != '\n')
-    {
+	i = 0;
+	while (aux && aux[0] != '\n')
+	{
 		map[i] = ft_strtrim(aux, "\n");
-        free(aux);
-        aux = get_next_line(fd);
-        i++;
-    }
+		free(aux);
+		aux = get_next_line(fd);
+		i++;
+	}
 	map[i] = NULL;
-    return(aux);
+	return (aux);
 }
 
 void	read_map(t_data *data, int fd)
@@ -98,14 +98,14 @@ void	read_map(t_data *data, int fd)
 		aux = store_textures(fd, data->colors, aux, 2);
 	else
 		aux = store_textures(fd, data->imgs, aux, 4);
-    aux = skip_empty(aux, fd);
-    aux = store_map(data->map, aux, fd);
-	if(data->colors[0]->path && data->colors[1]->path)
+	aux = skip_empty(aux, fd);
+	aux = store_map(data->map, aux, fd);
+	if (data->colors[0]->path && data->colors[1]->path)
 	{
 		store_colors(data->colors[0], data, data->colors[0]->type[0]);
 		store_colors(data->colors[1], data, data->colors[1]->type[0]);
 	}
-	if(aux)
-        free(aux);
+	if (aux)
+		free(aux);
 	get_next_line(-1);
 }

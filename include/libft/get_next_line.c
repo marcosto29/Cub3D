@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 16:15:35 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/19 18:35:32 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/23 19:09:47 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ static char	*read_buffer(int fd, int *bytes_read)
 
 static char	*increment_readed_buffer(char *pt_buffer, int fd, int *bytes_read)
 {
-	char		*pt_read;
-	char		*pt_return;
+	char	*pt_read;
+	char	*pt_return;
 
 	pt_read = read_buffer(fd, bytes_read);
 	if (!pt_read || *bytes_read == -1)
-		return (free(pt_read),free(pt_buffer), NULL);
+		return (free(pt_read), free(pt_buffer), NULL);
 	pt_return = ft_strjoin(pt_buffer, pt_read);
 	return (free(pt_read), free(pt_buffer), pt_return);
 }

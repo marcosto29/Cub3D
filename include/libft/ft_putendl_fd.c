@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 14:11:29 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/23 18:58:43 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/23 19:09:56 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	if(fd == 1)
+	if (fd == 1)
 		ft_putstr_fd("Error\n", fd);
 	ft_putstr_fd(s, fd);
 	write(fd, "\n", 1);

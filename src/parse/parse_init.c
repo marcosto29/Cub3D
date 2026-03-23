@@ -6,26 +6,27 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 16:02:10 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/23 18:51:08 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/23 19:07:32 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char *skip_imgs(char *aux, int fd)
+char	*skip_imgs(char *aux, int fd)
 {
-    while (aux && aux[0] != '\n')
-    {
-        free(aux);
-        aux = get_next_line(fd);
-    }
-    return (aux);
+	while (aux && aux[0] != '\n')
+	{
+		free(aux);
+		aux = get_next_line(fd);
+	}
+	return (aux);
 }
-int map_size(int fd)
+
+int	map_size(int fd)
 {
-	int map_len;
-	char *aux;
-		
+	int		map_len;
+	char	*aux;
+
 	map_len = 0;
 	aux = get_next_line(fd);
 	aux = skip_empty(aux, fd);
@@ -33,20 +34,21 @@ int map_size(int fd)
 	aux = skip_empty(aux, fd);
 	aux = skip_imgs(aux, fd);
 	aux = skip_empty(aux, fd);
-	while (aux  && aux[0] != '\n')
+	while (aux && aux[0] != '\n')
 	{
 		map_len++;
 		free(aux);
 		aux = get_next_line(fd);
 	}
-	if(aux)
+	if (aux)
 		map_len = 0;
 	get_next_line(-1);
 	return (map_len);
 }
-void init_textures(t_textures **imgs, int len)
+
+void	init_textures(t_textures **imgs, int len)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < len)
@@ -58,14 +60,14 @@ void init_textures(t_textures **imgs, int len)
 	i = 0;
 }
 
-void init_data(t_data *data, char *av1)
+void	init_data(t_data *data, char *av1)
 {
-	int fd2;
-	
+	int	fd2;
+
 	fd2 = open(av1, O_RDONLY);
 	data->map_len = map_size(fd2);
 	close(fd2);
-	if(data->map_len > 6)
+	if (data->map_len > 6)
 		data->map = ft_calloc(data->map_len + 1, sizeof(char *));
 	data->imgs = ft_calloc(5, sizeof(t_textures *));
 	init_textures(data->imgs, 4);

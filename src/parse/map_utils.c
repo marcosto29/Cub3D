@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 17:16:43 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/23 18:41:40 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/23 19:05:55 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	is_valid_char(char c)
 		return (1);
 	return (0);
 }
+
 int	is_safe(char **map, int i, int j)
 {
 	if (j == 0)
@@ -80,6 +81,7 @@ int	is_safe(char **map, int i, int j)
 		return (1);
 	return (0);
 }
+
 int	check_zeros(char **map)
 {
 	int	i;
