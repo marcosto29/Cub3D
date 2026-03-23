@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 16:02:10 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/19 18:31:14 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/23 18:51:08 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int map_size(int fd)
 		free(aux);
 		aux = get_next_line(fd);
 	}
+	if(aux)
+		map_len = 0;
 	get_next_line(-1);
 	return (map_len);
 }

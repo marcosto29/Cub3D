@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 09:25:10 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/19 18:42:40 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/23 18:38:10 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,5 @@ int is_valid(char c);
 int	check_textures(t_data *data);
 int	check_colors(t_data *data);
 int	check_map(t_data *data);
+int	check_zeros(char **map);
 #endif

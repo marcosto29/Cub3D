@@ -6,7 +6,7 @@
 #    By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/02 15:36:39 by aosset-o          #+#    #+#              #
-#    Updated: 2026/03/19 17:44:47 by aosset-o         ###   ########.fr        #
+#    Updated: 2026/03/23 17:10:14 by aosset-o         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ MLX = $(MLX_PATH)/libmlx.a
 
 NAME = cub3D
 SRC = src/main.c src/parse/store_map.c src/parse/parse_free.c src/parse/parse_init.c \
-src/parse/parse_utils.c src/parse/check_textures.c src/parse/check_map.c 
+src/parse/parse_utils.c src/parse/check_textures.c src/parse/check_map.c src/parse/map_utils.c
 
 OBJ = $(SRC:.c=.o)
 

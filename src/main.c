@@ -6,45 +6,39 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 13:59:04 by matoledo          #+#    #+#             */
-/*   Updated: 2026/03/19 18:42:48 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/23 18:59:14 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void ft_exit(t_data *data, int fd, int status)
+void	ft_exit(t_data *data, int fd, int status)
 {
-	if(data)
+	if (data)
 		free_data(data);
-	if(fd != 0)
+	if (fd != 0)
 		close(fd);
 	exit(status);
 }
+
 int	main(int argc, char *argv[])
 {
-	if(argc != 2)
-		return(ft_putendl_fd("Error\nInvalid number of arguments.", 1), 1);
-	int fd;
+	int		fd;
+	t_data	*data;
+
+	if (argc != 2)
+		return (ft_putendl_fd("Invalid number of arguments.", 1), 1);
 	fd = open(argv[1], O_RDONLY);
-	if(fd == -1)
-		return(ft_putendl_fd("Error\nMap file does not exist.",1), 1);
-	if(check_extension(argv[1]) == 1)
-		return(close(fd), ft_putendl_fd("Error\nInvalid map extenson.",1), 1);
-	t_data *data;
+	if (fd == -1)
+		return (ft_putendl_fd("Map file does not exist.", 1), 1);
+	if (check_extension(argv[1]) == 1)
+		return (close(fd), ft_putendl_fd("Invalid map extenson.", 1), 1);
 	data = ft_calloc(2, sizeof(t_data));
 	init_data(data, argv[1]);
-	if(data->map_len > 6)
-	{
-		read_map(data, fd);
-		for(int i = 0; i < 4; i++)
-			printf("the orientation is: %s, and the texture is: %s", data->imgs[i]->type, data->imgs[i]->path);
-		for(int j = 0; j < 3; j++)
-			printf("the floor color is: %i, and the ceiling color is: %i\n", data->floor[j], data->ceiling[j]);
-		for (int k = 0; data->map[k]; k++)
-			printf("%s\n", data->map[k]);
-	}
-	if(check_textures(data) != 0 || check_colors(data) != 0 || check_map(data) != 0)
+	if (data->map_len < 6)
+		return (ft_exit(data, fd, 1), ft_putendl_fd("Invalid format", 1), 1);
+	read_map(data, fd);
+	if (check_textures(data) || check_colors(data) || check_map(data))
 		ft_exit(data, fd, 1);
-	ft_exit(data, fd, 0);
-	return(0);
+	return (ft_exit(data, fd, 0), 0);
 }
