@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 06:55:38 by matoledo          #+#    #+#             */
-/*   Updated: 2026/03/23 07:51:05 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/03/24 11:26:57 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,12 @@ int	close_window(t_screen *screen)
 	free(screen->mlx);
 	free(screen);
 	exit(0);
+}
+
+void	free_player(t_player *camera)
+{
+	free(camera->position);
+	free(camera->direction);
+	free(camera->camera_plane);
+	free(camera);
 }

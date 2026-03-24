@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize.c                                       :+:      :+:    :+:   */
+/*   screen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 07:46:51 by matoledo          #+#    #+#             */
-/*   Updated: 2026/03/23 07:51:09 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/03/23 22:02:56 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*create_window(void *mlx)
 {
 	void	*window;
 
-	window = mlx_new_window(mlx, 400, 400, "cub3D");
+	window = mlx_new_window(mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3D");
 	if (!window)
 		return (NULL);
 	initialize_events(window);
