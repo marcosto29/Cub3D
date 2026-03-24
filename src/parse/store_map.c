@@ -6,39 +6,52 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:24:16 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/23 19:04:48 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/24 18:09:30 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	*store_textures(int fd, t_textures **data, char *aux, int len)
+void store_splitted(char *str, t_data *data, int *pos_img, int *pos_clr)
 {
-	char	**args;
-	int		i;
-
-	i = 0;
-	while (i < len && aux && aux[0] != '\n')
+	char **args;
+	
+	args = ft_split(str, ' ');
+	if(args[0] && args[1] && !is_img(args[0]))
 	{
-		args = ft_split(aux, ' ');
-		if (!args || !args[0] || !args[1])
-		{
-			ft_putendl_fd("textures does not exit.", 1);
-			if (args)
-				free_double(args);
-			return (aux);
-		}
-		data[i]->type = ft_strdup(args[0]);
-		data[i]->path = ft_strtrim(args[1], "\n");
-		free(aux);
-		free_double(args);
+		data->imgs[*pos_img]->type = ft_strdup(args[0]);
+		data->imgs[*pos_img]->path = ft_strtrim(args[1], "\n");
+		(*pos_img)++;
+	}
+	else if(args[0] && args[1] && !is_color(args[0]))
+	{
+		data->colors[*pos_clr]->type = ft_strdup(args[0]);
+		data->colors[*pos_clr]->path = ft_strtrim(args[1], "\n");
+		(*pos_clr)++;
+	}
+	if(args)
+		free_double(args);		
+}
+char	*store_elements(int fd, t_data *data, char *aux)
+{
+	int pos_img;
+	int pos_clr;
+	int i;
+	
+	pos_img = 0;
+	pos_clr = 0;
+	i = 0;
+	while (i < 6)
+	{
+		aux = skip_empty(aux, fd);
+		store_splitted(aux, data, &pos_img, &pos_clr);
 		aux = get_next_line(fd);
 		i++;
 	}
-	return (aux);
+	return(aux);
 }
 
-void	store_colors(t_textures *colors, t_data *data, char c)
+void	colors_int(t_textures *colors, t_data *data, char c)
 {
 	char	**splitted_colors;
 	int		i;
@@ -88,22 +101,13 @@ void	read_map(t_data *data, int fd)
 	char	*aux;
 
 	aux = get_next_line(fd);
-	aux = skip_empty(aux, fd);
-	if (aux && (aux[0] == 'C' || aux[0] == 'F'))
-		aux = store_textures(fd, data->colors, aux, 2);
-	else
-		aux = store_textures(fd, data->imgs, aux, 4);
-	aux = skip_empty(aux, fd);
-	if (aux && (aux[0] == 'C' || aux[0] == 'F') && !data->colors[0]->type)
-		aux = store_textures(fd, data->colors, aux, 2);
-	else
-		aux = store_textures(fd, data->imgs, aux, 4);
+	aux = store_elements(fd, data, aux);
 	aux = skip_empty(aux, fd);
 	aux = store_map(data->map, aux, fd);
 	if (data->colors[0]->path && data->colors[1]->path)
 	{
-		store_colors(data->colors[0], data, data->colors[0]->type[0]);
-		store_colors(data->colors[1], data, data->colors[1]->type[0]);
+		colors_int(data->colors[0], data, data->colors[0]->type[0]);
+		colors_int(data->colors[1], data, data->colors[1]->type[0]);
 	}
 	if (aux)
 		free(aux);

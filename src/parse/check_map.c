@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 16:48:57 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/23 19:06:04 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/24 17:45:06 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,18 @@ int	check_first_last(t_data *data)
 
 int	check_map(t_data *data)
 {
+	int i;
+
 	if (check_chars(data->map) != 0 || check_first_last(data) != 0
 		|| check_zeros(data->map) != 0)
 		return (ft_putendl_fd("Invalid map", 1), 1);
+	i = 0;
+	while (data->map[i])
+	{
+		if(ft_strlen(data->map[i]) < 6 || ft_strlen(data->map[i]) > 256)
+			return (ft_putendl_fd("Invalid map", 1), 1);
+		i++;
+	}
+	
 	return (0);
 }

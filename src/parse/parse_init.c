@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 16:02:10 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/23 19:07:32 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/24 17:55:17 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ int	map_size(int fd)
 
 	map_len = 0;
 	aux = get_next_line(fd);
-	aux = skip_empty(aux, fd);
-	aux = skip_imgs(aux, fd);
-	aux = skip_empty(aux, fd);
-	aux = skip_imgs(aux, fd);
-	aux = skip_empty(aux, fd);
+	while (aux && aux[ft_count_spaces(aux, 0)] != '1')
+	{
+		free(aux);
+		aux = get_next_line(fd);
+	}	
 	while (aux && aux[0] != '\n')
 	{
 		map_len++;
@@ -67,7 +67,7 @@ void	init_data(t_data *data, char *av1)
 	fd2 = open(av1, O_RDONLY);
 	data->map_len = map_size(fd2);
 	close(fd2);
-	if (data->map_len > 6)
+	if (data->map_len >= 6 && data->map_len <= 256)
 		data->map = ft_calloc(data->map_len + 1, sizeof(char *));
 	data->imgs = ft_calloc(5, sizeof(t_textures *));
 	init_textures(data->imgs, 4);
