@@ -6,42 +6,15 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 22:14:22 by matoledo          #+#    #+#             */
-/*   Updated: 2026/03/24 16:32:28 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/03/26 19:49:30 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	cub3D_loop(void)
+int	cub3D_loop(char **worldMap)
 {
 	int	i;
-	int worldMap[24][24] =
-	{
-		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-		{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-		{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-	};
 	
 	while(1)
 	{
@@ -50,10 +23,12 @@ int	cub3D_loop(void)
 		t_vector	*dist_ray_wall;
 		t_vector	*step;
 		t_vector	*dist;
+		double		cameraX;
 
 		ray = malloc(sizeof(t_vector));
 		step = malloc(sizeof(t_vector));
 		dist_ray_wall = malloc(sizeof(t_vector));
+		dist = malloc(sizeof(t_vector));
 		//disparamos un rayo para pixel de la pantalla y lo transformamos a coordenadas del plano
 		//esta transformación se hace a partir de la fórmula:
 		//rayo = dirección_rayo + plano * posición_relativa
@@ -77,9 +52,9 @@ int	cub3D_loop(void)
 		//|  |  |        |
 		while (i < SCREEN_WIDTH)
 		{
-			double cameraX = 2 * i / SCREEN_WIDTH - 1;
-			ray->x = player()->direction->x + (player()->camera_plane->x * cameraX);
-			ray->y = player()->direction->y + (player()->camera_plane->y * cameraX);
+			cameraX = 2 * i / (double)SCREEN_WIDTH - 1;
+			ray->x = player(NULL)->direction->x + (player(NULL)->camera_plane->x * cameraX);
+			ray->y = player(NULL)->direction->y + (player(NULL)->camera_plane->y * cameraX);
 			//una vez tenemos el rayo trabajamos bajo un mapa rectangular del que vamos a ir cuadrado a cuadrrado comprobando si hay un muro
 			//para avanazar se hace paso a paso recorriendo el rayo comprobando el choque con los respectivos ejes de la cuadrícula
 			//en el caso del eje de las y habría que dar un paso horizontalmente para llegar al siguiente choque y lo mismo para el de las X
@@ -123,44 +98,45 @@ int	cub3D_loop(void)
 			//y ese porcentaje se le aplica a la distancia previamente calculada -> distRayWallX * 0.7 (el 70% de l distancia al siguiente punto)
 			//si es positivo y el jugador quiere llegar a 4 se hará al revés tal que
 			//(3 + 1) - 3.7 = 0.3, se redondea al integer y se le suma 1 quedando el 30% restante.
-			int	mapX = (int)player()->position->x;
-			int	mapY = (int)player()->position->y;
-			if (ray->x < 1)
+			int	mapX = (int)player(NULL)->position->x;
+			int	mapY = (int)player(NULL)->position->y;
+			if (ray->x < 0)
 			{
 				step->x *= -1;
-				dist->x = (player()->position->x - mapX) * dist_ray_wall->x;
+				dist->x = (player(NULL)->position->x - mapX) * dist_ray_wall->x;
 			}
 			else
-				dist->x = (mapX + 1 - player()->position->x) * dist_ray_wall->x;
-			if (ray->y < 1)
+				dist->x = (mapX + 1 - player(NULL)->position->x) * dist_ray_wall->x;
+			if (ray->y < 0)
 			{
 				step->y *= -1;
-				dist->y = (player()->position->y - mapY) * dist_ray_wall->y;
+				dist->y = (player(NULL)->position->y - mapY) * dist_ray_wall->y;
 			}
 			else
-				dist->y = (mapY + 1 - player()->position->y) * dist_ray_wall->y;
+				dist->y = (mapY + 1 - player(NULL)->position->y) * dist_ray_wall->y;
 			//Otro factor a tener en cuenta es comprbar si se ha golpeado a la pared por norte sur este u oeste
 			int	side;
 			int hit = 0;
 			//en un bucle se va avanzando horizontal y verticlamente paso a paso hasta encontrar un hit con una pared
 			while (hit == 0)
 			{
-				if (dist->x < dist->y)
+				if (dist->y < dist->x)
 				{
-					dist->x += dist_ray_wall->x;
-					mapX += step->x;
+					dist->y += dist_ray_wall->y;
+					mapY += step->y;
 					side = 0;
 				}
 				else
 				{
-					dist->y += dist_ray_wall->y;
-					mapY += step->y;
+					dist->x += dist_ray_wall->x;
+					mapX += step->x;
 					side = 1;
 				}
-				if (worldMap[mapX][mapY] > 0) hit = 1;
+				if (worldMap[mapX][mapY] - '0' > 0) 
+					hit = 1;
 			}
-			printf("side: %d\n", side);
 			i++;
+			(void)side;
 		}
 		mlx_loop(screen()->mlx);
 	}
