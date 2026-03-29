@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 09:25:10 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/24 17:14:26 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/29 17:35:43 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_data
 void			free_data(t_data *data);
 void			init_data(t_data *data, char *av1);
 void			free_double(char **pointer);
-char			*store_elements(int fd, t_data *data, char *aux);
+int				store_elements(int fd, t_data *data, char **aux);
 void			init_textures(t_textures **imgs, int len);
 void			free_img(t_textures **imgs);
 void			read_map(t_data *data, int fd);

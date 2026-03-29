@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 19:45:22 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/24 18:10:28 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/03/29 17:49:58 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_imgs_type(t_textures **img)
 	while (img[i] && img[i]->type)
 	{
 		if (is_img(img[i]->type) != 0)
-			return (ft_putendl_fd("Invalid texture identifier.", 1), 1);
+			return (ft_putendl_fd("Invalid texture or color.", 1), 1);
 		i++;
 	}
 	i = 0;
@@ -33,7 +33,7 @@ int	check_imgs_type(t_textures **img)
 			if (i != j && ((!ft_strncmp(img[j]->type, img[i]->type, 3))
 					|| !ft_strncmp(img[j]->path, img[i]->path,
 						ft_strlen(img[i]->path))))
-				return (ft_putendl_fd("Duplicate textures.", 1), 1);
+				return (ft_putendl_fd("Duplicate texture or color.", 1), 1);
 			j++;
 		}
 		i++;
@@ -70,7 +70,7 @@ int	check_colors_type(t_textures **imgs)
 	while (imgs[i] && imgs[i]->type)
 	{
 		if (is_color(imgs[i]->type) != 0)
-			return (ft_putendl_fd("Invalid color identifier.", 1), 1);
+			return (ft_putendl_fd("Invalid texture or color.", 1), 1);
 		i++;
 	}
 	i = 0;
@@ -79,7 +79,7 @@ int	check_colors_type(t_textures **imgs)
 		while (imgs[j] && imgs[j]->type)
 		{
 			if (ft_strncmp(imgs[j]->type, imgs[i]->type, 2) == 0 && i != j)
-				return (ft_putendl_fd("Duplicate color identifiers.", 1), 1);
+				return (ft_putendl_fd("Duplicate texture or color.", 1), 1);
 			j++;
 		}
 		j = 0;
@@ -98,7 +98,7 @@ int	check_commas(t_textures **imgs)
 	while (imgs[i])
 	{
 		j = 0;
-		while (imgs[i] && imgs[i]->path[j])
+		while (imgs[i] && imgs[i]->path && imgs[i]->path[j])
 		{
 			if (imgs[i]->path[j] == ',')
 				commas++;
@@ -122,7 +122,7 @@ int	check_colors(t_data *data)
 	{
 		if (data->ceiling[i] < 0 || data->ceiling[i] > 255 || data->floor[i] < 0
 			|| data->floor[i] > 255)
-			return (ft_putendl_fd("Colors out of range", 1), 1);
+			return (ft_putendl_fd("Invalid texture or color.", 1), 1);
 		i++;
 	}
 	return (0);
