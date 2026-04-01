@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 13:59:04 by matoledo          #+#    #+#             */
-/*   Updated: 2026/03/30 20:28:33 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/01 11:38:40 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int argc, char *argv[])
 {
 	(void)argc;
 	(void)argv;
+	
 	char *worldMap[] = {
 		"111111111111111111111111",//0
 		"100000000000000000000001",//1
@@ -44,11 +45,12 @@ int	main(int argc, char *argv[])
 		NULL
 	};
 
-	if (player(worldMap) == NULL)
+	world_map(worldMap);
+	if (player(world_map(NULL)) == NULL)
 		return (1);
 	if (initialize_minilibx() == 1)
 		return (1);
-	cub3D_loop(worldMap);
-	free_player(player(NULL));
+	draw_image(worldMap);
+	mlx_loop(screen()->mlx);
 	return (0);
 }
