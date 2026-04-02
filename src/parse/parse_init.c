@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 16:02:10 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/24 17:55:17 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/04/02 14:06:40 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	map_size(int fd)
 
 	map_len = 0;
 	aux = get_next_line(fd);
+	aux = skip_empty(aux, fd);
 	while (aux && aux[ft_count_spaces(aux, 0)] != '1')
 	{
 		free(aux);
@@ -41,9 +42,11 @@ int	map_size(int fd)
 		aux = get_next_line(fd);
 	}
 	if (aux)
+	{
+		free(aux);
 		map_len = 0;
-	get_next_line(-1);
-	return (map_len);
+	}
+	return (get_next_line(-1), map_len);
 }
 
 void	init_textures(t_textures **imgs, int len)
@@ -66,11 +69,13 @@ void	init_data(t_data *data, char *av1)
 
 	fd2 = open(av1, O_RDONLY);
 	data->map_len = map_size(fd2);
+	data->img_len = 4;
+	data->clr_len = 2;
 	close(fd2);
 	if (data->map_len >= 6 && data->map_len <= 256)
 		data->map = ft_calloc(data->map_len + 1, sizeof(char *));
-	data->imgs = ft_calloc(5, sizeof(t_textures *));
-	init_textures(data->imgs, 4);
-	data->colors = ft_calloc(3, sizeof(t_textures *));
-	init_textures(data->colors, 2);
+	data->imgs = ft_calloc(data->img_len + 1, sizeof(t_textures *));
+	init_textures(data->imgs, data->img_len);
+	data->colors = ft_calloc(data->clr_len + 1, sizeof(t_textures *));
+	init_textures(data->colors, data->clr_len);
 }

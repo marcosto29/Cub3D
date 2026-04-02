@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 09:25:10 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/29 17:35:43 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/04/02 13:17:28 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct s_data
 	int			floor[3];
 	int			ceiling[3];
 	int			map_len;
+	int			img_len;
+	int			clr_len;
 	char		**map;
 	t_textures	**imgs;
 	t_textures	**colors;

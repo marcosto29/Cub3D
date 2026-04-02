@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:24:16 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/29 17:54:10 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/04/02 14:01:23 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	store_splitted(char *str, t_data *data, int *pos_img, int *pos_clr)
 		return (1);
 	if(args[0] && args[1] && !is_img(args[0]))
 	{
-		if (*pos_img >= 4)
+		if (*pos_img >= data->img_len)
 			return (free_double(args), 1);
 		data->imgs[*pos_img]->type = ft_strdup(args[0]);
 		data->imgs[*pos_img]->path = ft_strtrim(args[1], "\n");
@@ -31,7 +31,7 @@ static int	store_splitted(char *str, t_data *data, int *pos_img, int *pos_clr)
 	}
 	else if(args[0] && args[1] && !is_color(args[0]))
 	{
-		if (*pos_clr >= 2)
+		if (*pos_clr >= data->clr_len)
 			return (free_double(args), 1);
 		data->colors[*pos_clr]->type = ft_strdup(args[0]);
 		data->colors[*pos_clr]->path = ft_strtrim(args[1], "\n");
@@ -46,11 +46,13 @@ int	store_elements(int fd, t_data *data, char **aux)
 	int pos_img;
 	int pos_clr;
 	int i;
+	int len;
 
 	pos_img = 0;
 	pos_clr = 0;
+	len = data->img_len + data->clr_len;
 	i = 0;
-	while (i < 6)
+	while (i < len)
 	{
 		*aux = skip_empty(*aux, fd);
 		if (store_splitted(*aux, data, &pos_img, &pos_clr) != 0)
