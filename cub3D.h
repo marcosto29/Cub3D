@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 16:30:19 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/01 11:50:57 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/03 21:22:15 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 # include "stdio.h"
 # include "math.h"
 # ifndef SCREEN_WIDTH
-#  define SCREEN_WIDTH 400
+#  define SCREEN_WIDTH 800
 # endif
 # ifndef SCREEN_HEIGHT
-#  define SCREEN_HEIGHT 400
+#  define SCREEN_HEIGHT 800
 # endif
 
 typedef struct screen
@@ -53,9 +53,9 @@ typedef struct image_data
 }				t_image_data;
 
 int			initialize_minilibx(void);
-int			key_hook(int keyCode, t_screen *screen);
-int			mouse_hook(int button, int x, int y, t_screen *param);
-int			close_window(t_screen *screen);
+int			key_hook(int keyCode);
+int			mouse_hook(int button, int x, int y);
+int			close_window();
 t_screen	*screen(void);
 t_player	*player();
 void		draw_image();

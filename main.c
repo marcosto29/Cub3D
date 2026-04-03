@@ -6,11 +6,12 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 13:59:04 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/01 11:38:40 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/03 22:37:08 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+#include "string.h"
 
 int	main(int argc, char *argv[])
 {
@@ -40,12 +41,25 @@ int	main(int argc, char *argv[])
 		"140400004000000000000001",//19
 		"144444444000000000000001",//20
 		"140000000000000000000001",//21
-		"14444444400000W000000001",//22
+		"1444444440000N0000000001",//22
 		"111111111111111111111111",//23
 		NULL
 	};
 
-	world_map(worldMap);
+	char	**memory_world;
+	int		i;
+
+	i = 0;
+	memory_world = malloc(sizeof(char *) * 25);
+	while (i < 24)
+	{
+		memory_world[i] = malloc(strlen(worldMap[i]) + 1);
+		strcpy(memory_world[i], worldMap[i]);
+		i++;
+	}
+	memory_world[i] = NULL;
+
+	world_map(memory_world);
 	if (player(world_map(NULL)) == NULL)
 		return (1);
 	if (initialize_minilibx() == 1)

@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 22:14:22 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/01 11:40:02 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/03 21:28:47 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,7 +231,7 @@ void	draw_image()
 		//a una distancia de 0 la altura será 200 pero cuanto más andemos más pequeño se verá (una relacón inversa), es decir
 		//la altura en camara será igual a 1 / distancia * la altura real o altura real / distancia
 		double height;
-		double realHeight = 200;
+		double realHeight = SCREEN_HEIGHT / 2;
 		height =  realHeight / wall_hitted_distance;
 		//y desde donde pintarlo y hasta donde pintarlo se calcula teniendo en cuenta que el centro de la pared tiene que estar en la mitad del eje y
 		t_vector	pixel_bound;

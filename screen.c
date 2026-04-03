@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 07:46:51 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/01 10:13:27 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/03 21:04:13 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	initialize_events(void	*window)
 {
-	mlx_key_hook(window, key_hook, screen());
 	mlx_mouse_hook(window, mouse_hook, screen());
 	mlx_hook(window, 17, 1L << 1, close_window, screen());
+	mlx_hook(window, 2, 1L << 0, key_hook, screen());
 }
 
 void	*create_window(void *mlx)

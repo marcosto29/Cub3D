@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 21:36:03 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/01 11:51:10 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/03 21:10:25 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ t_player	*create_player(char **worldMap)
 	player->position = position;
 	player->direction = direction_ray;
 	player->camera_plane = camera_plane;
-	player->speed = 0.2;
+	player->speed = 0.3;
 	return (player);
 }
 
