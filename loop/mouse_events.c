@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 06:29:20 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/03 21:22:23 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/06 12:37:15 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	mouse_hook(int button, int x, int y)
 {
-	(void)screen;
-	// printf("key_code: %d", key_code);
 	if (button == 1)
 		printf("left clcik\n");
 	if (button == 2)

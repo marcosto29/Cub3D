@@ -6,13 +6,13 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 22:14:22 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/03 21:28:47 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/06 10:12:43 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	wall_color(int wall)
+int	color(int wall)
 {
 	if (wall == 1)
 		return (0xFF0000);
@@ -22,36 +22,48 @@ int	wall_color(int wall)
 		return (0x0000FF);
 	if (wall == 4)
 		return (0xFF00FF);
+	//cielo
+	if (wall == 10)
+		return (0xADD8E6);
+	//suelo
+	if (wall == 11)
+		return (0x9C9C9C);
 	return (0);
 }
 
 int	paint_pixels(int pixel_column, t_vector pixels_bound, void *img, int wall)
 {
-	t_image_data	image_data;
-	char			*image_aux;
+	t_image_data	img_d;
 	int				i;
-	int				memory_space;
+	int				pos;
+	int				p_color;
 
-	image_data.image = mlx_get_data_addr(img, &image_data.bits_per_pixel,
-			&image_data.line_size, &image_data.endian);
+	img_d.img = mlx_get_data_addr(img, &img_d.bpp, &img_d.ls, &img_d.end);
 	i = 0;
 	while (i < SCREEN_HEIGHT)
 	{
+		//nos vamos desplazando por el array de caracteres que representa la imagen
+		//moviendonos de 4 en 4 (los bytes que sirven para representar el color de cada pixel)
+		pos = i * img_d.ls + pixel_column * 4;
+		//si el pixel pertenece a una columna, pintar columna
 		if (i >= pixels_bound.x && i <= pixels_bound.y)
+			p_color = wall;
+		//si el pixel no coincide con una columna, pintar suelo o cielo en función de si está por encima de la mitad de la pantalla o por debajo
+		else
 		{
-			//nos vamos desplazando por el array de caracteres que representa la imagen
-			//moviendonos de 4 en 4 (los bytes que sirven para representar el color de cada pixel)
-			memory_space = i * image_data.line_size + pixel_column * 4;
-			image_aux = image_data.image + memory_space;
-			*(unsigned int *)image_aux = mlx_get_color_value(screen()->mlx, wall_color(wall));
+			if (i <= SCREEN_HEIGHT / 2)
+				p_color = 10;
+			else
+				p_color = 11;
 		}
+		*(unsigned int *)(img_d.img + pos)
+			= mlx_get_color_value(screen()->mlx, color(p_color));
 		i++;
 	}
 	return (0);
 }
 
-
-void	draw_image()
+void	draw_image(void)
 {
 	int			i;
 	t_vector	ray;
@@ -89,8 +101,8 @@ void	draw_image()
 	while (i < SCREEN_WIDTH)
 	{
 		camera_x = 2 * i / (double)SCREEN_WIDTH - 1;
-		ray.x = player(NULL)->direction.x + (player(NULL)->camera_plane.x * camera_x);
-		ray.y = player(NULL)->direction.y + (player(NULL)->camera_plane.y * camera_x);
+		ray.x = player()->direction.x + (player()->camera_plane.x * camera_x);
+		ray.y = player()->direction.y + (player()->camera_plane.y * camera_x);
 		//una vez tenemos el rayo trabajamos bajo un mapa rectangular del que vamos a ir cuadrado a cuadrado comprobando si hay un muro
 		//para avanazar se hace paso a paso recorriendo el rayo comprobando el choque con los respectivos ejes de la cuadrícula
 		//en el caso del eje de las y habría que dar un paso horizontalmente para llegar al siguiente choque y lo mismo para el de las X
@@ -149,22 +161,22 @@ void	draw_image()
 		//y ese porcentaje se le aplica a la distancia previamente calculada -> distRayWallX * 0.7 (el 70% de l distancia al siguiente punto)
 		//si es positivo y el jugador quiere llegar a 4 se hará al revés tal que
 		//(3 + 1) - 3.7 = 0.3, se redondea al integer y se le suma 1 quedando el 30% restante.
-		int	map_x = (int)player(NULL)->position.x;
-		int	map_y = (int)player(NULL)->position.y;
+		int	map_x = (int)player()->position.x;
+		int	map_y = (int)player()->position.y;
 		if (ray.x < 0)
 		{
 			step.x *= -1;
-			dist.x = (player(NULL)->position.x - map_x) * dist_ray_wall.x;
+			dist.x = (player()->position.x - map_x) * dist_ray_wall.x;
 		}
 		else
-			dist.x = (map_x + 1 - player(NULL)->position.x) * dist_ray_wall.x;
+			dist.x = (map_x + 1 - player()->position.x) * dist_ray_wall.x;
 		if (ray.y < 0)
 		{
 			step.y *= -1;
-			dist.y = (player(NULL)->position.y - map_y) * dist_ray_wall.y;
+			dist.y = (player()->position.y - map_y) * dist_ray_wall.y;
 		}
 		else
-			dist.y = (map_y + 1 - player(NULL)->position.y) * dist_ray_wall.y;
+			dist.y = (map_y + 1 - player()->position.y) * dist_ray_wall.y;
 		//Otro factor a tener en cuenta es comprbar si se ha golpeado a la pared por norte/sur o este/oeste
 		int	side;
 		int hit = 0;
@@ -185,7 +197,7 @@ void	draw_image()
 				//golpeó pared horizontal
 				side = 1;
 			}
-			if (world_map(NULL)[map_x][map_y] - '0' > 0) 
+			if (world_info(NULL)[map_x][map_y] - '0' > 0) 
 				hit = 1;
 		}
 		//una vez se sabe el elemento que ha sido golpeado, se tiene que cacular su distancia al plano de renderizado para poder pintarlo con la altura correcta en pantalla
@@ -242,7 +254,7 @@ void	draw_image()
 		if (pixel_bound.y > SCREEN_HEIGHT - 1)
 			pixel_bound.y = SCREEN_HEIGHT - 1;
 		//teniendo el pixel ya desde donde empieza a dibujar hasta donde acaba, se llaman a las funciones de la librería y se renderizan
-		paint_pixels(i, pixel_bound, screen()->img, world_map(NULL)[map_x][map_y] - '0');
+		paint_pixels(i, pixel_bound, screen()->img, world_info(NULL)[map_x][map_y] - '0');
 		i++;
 	}
 	mlx_put_image_to_window(screen()->mlx, screen()->win, screen()->img, 0, 0);

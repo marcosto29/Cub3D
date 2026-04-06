@@ -6,7 +6,7 @@
 #    By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/19 13:17:46 by matoledo          #+#    #+#              #
-#    Updated: 2026/04/01 11:41:20 by matoledo         ###   ########.fr        #
+#    Updated: 2026/04/06 12:36:06 by matoledo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ LFLAGS =   -L./include/mlx -lmlx -lXext -lX11 -lm
 
 IFLAGS = -Iinclude/mlx
 
-SRCS = main.c free.c screen.c player.c render.c world_map.c\
-		events/key_events.c events/mouse_events.c
+SRCS = main.c free.c screen.c player.c render.c world_info.c\
+		loop/key_events.c loop/mouse_events.c loop/game_loop.c loop/movement.c loop/visual.c
 
 OBJS = $(SRCS:.c=.o)
 

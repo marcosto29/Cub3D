@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 21:36:03 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/03 21:10:25 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/06 10:22:09 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ size_t	ft_size(void *pointer, size_t data_type)
 
 void	rotate_vector(t_vector *vector, double angle)
 {
-	double	oldX;
+	double	old_x;
 
-	oldX = vector->x;
-	vector->x = oldX * cos(angle) - vector->y * sin(angle);
-	vector->y = oldX * sin(angle) + vector->y * cos(angle);
+	old_x = vector->x;
+	vector->x = old_x * cos(angle) - vector->y * sin(angle);
+	vector->y = old_x * sin(angle) + vector->y * cos(angle);
 }
 
 t_vector	initial_plane(t_vector direction_ray, double ratio)
@@ -94,14 +94,14 @@ t_vector	initial_position(char **worldMap)
 	return (position);
 }
 
-t_player	*create_player(char **worldMap)
+t_player	*create_player(char **map)
 {
 	t_player	*player;
 	t_vector	position;
 	t_vector	direction_ray;
 	t_vector	camera_plane;
 
-	position = initial_position(worldMap);
+	position = initial_position(map);
 	if (position.x == -1)
 		return (NULL);
 	//con una dirección x = -1 y = 0 el jugador mira a la izquierda
@@ -115,7 +115,7 @@ t_player	*create_player(char **worldMap)
 	// 		       |
 	// 		       |
 	// 			  -1
-	direction_ray = initial_direction(worldMap[(int)position.x][(int)position.y]);
+	direction_ray = initial_direction(map[(int)position.x][(int)position.y]);
 	//Vector para indicar el tamaño del plano, cuanto más pequeño, mas lejos la camara
 	//como el vector tiene que ser perpendicular a la dirección del rayo sabemos su dirección
 	//el vector solo tiene la información de lo grande que es
@@ -126,19 +126,19 @@ t_player	*create_player(char **worldMap)
 	player->position = position;
 	player->direction = direction_ray;
 	player->camera_plane = camera_plane;
-	player->speed = 0.3;
+	player->speed = 5;
 	return (player);
 }
 
-t_player	*player()
+t_player	*player(void)
 {
 	static t_player	*player;
 
 	if (!player)
 	{
-		if (!world_map(NULL))
-			return(NULL);
-		player = create_player(world_map(NULL));
+		if (!world_info(NULL))
+			return (NULL);
+		player = create_player(world_info(NULL));
 		if (!player)
 			return (NULL);
 	}
