@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouse_events.c                                     :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/23 06:29:20 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/06 12:37:15 by matoledo         ###   ########.fr       */
+/*   Created: 2026/03/23 06:55:38 by matoledo          #+#    #+#             */
+/*   Updated: 2026/04/18 16:46:11 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "cub3d.h"
 
-int	mouse_hook(int button, int x, int y)
+int	close_window(void)
 {
-	if (button == 1)
-		printf("left clcik\n");
-	if (button == 2)
-		printf("scroll clcik\n");
-	if (button == 3)
-		printf("right clcik\n");
-	if (button == 4)
-		printf("scroll up\n");
-	if (button == 5)
-		printf("scroll down\n");
-	printf("x: %d\n", x);
-	printf("y: %d\n", y);
-	return (0);
+	if (screen()->img)
+		mlx_destroy_image(screen()->mlx, screen()->img);
+	if (screen()->win)
+		mlx_destroy_window(screen()->mlx, screen()->win);
+	mlx_destroy_display(screen()->mlx);
+	free(screen()->mlx);
+	free(screen());
+	free(player());
+	ft_free_double(world_info(NULL));
+	exit(0);
 }

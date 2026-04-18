@@ -6,11 +6,11 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 06:12:12 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/06 12:36:39 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/18 15:53:37 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "cub3d.h"
 
 int	key_pressed(int key_code)
 {

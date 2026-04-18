@@ -6,11 +6,11 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 12:31:05 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/06 12:36:56 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/18 15:53:06 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "cub3d.h"
 
 //Debuggeo
 void	print_map(void)

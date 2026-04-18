@@ -6,11 +6,11 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 21:36:03 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/06 10:22:09 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/18 16:10:18 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 size_t	ft_size(void *pointer, size_t data_type)
 {

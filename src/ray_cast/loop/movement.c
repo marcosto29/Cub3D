@@ -6,11 +6,11 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 12:32:53 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/06 13:30:56 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/18 15:53:37 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "cub3d.h"
 
 int	is_letter(char c)
 {

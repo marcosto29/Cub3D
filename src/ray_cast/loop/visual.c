@@ -6,11 +6,11 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 12:34:32 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/06 13:41:10 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/18 15:53:37 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "cub3d.h"
 
 char	look_direction(t_player *p)
 {

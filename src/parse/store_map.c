@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   store_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:24:16 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/04/02 14:01:23 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/04/18 16:13:18 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	store_splitted(char *str, t_data *data, int *pos_img, int *pos_clr)
 	if(args[0] && args[1] && !is_img(args[0]))
 	{
 		if (*pos_img >= data->img_len)
-			return (free_double(args), 1);
+			return (ft_free_double(args), 1);
 		data->imgs[*pos_img]->type = ft_strdup(args[0]);
 		data->imgs[*pos_img]->path = ft_strtrim(args[1], "\n");
 		(*pos_img)++;
@@ -32,12 +32,12 @@ static int	store_splitted(char *str, t_data *data, int *pos_img, int *pos_clr)
 	else if(args[0] && args[1] && !is_color(args[0]))
 	{
 		if (*pos_clr >= data->clr_len)
-			return (free_double(args), 1);
+			return (ft_free_double(args), 1);
 		data->colors[*pos_clr]->type = ft_strdup(args[0]);
 		data->colors[*pos_clr]->path = ft_strtrim(args[1], "\n");
 		(*pos_clr)++;
 	}
-	free_double(args);
+	ft_free_double(args);
 	return (0);
 }
 
@@ -90,7 +90,7 @@ void	colors_int(t_textures *colors, t_data *data, char c)
 		data->floor[0] = -1;
 		data->ceiling[0] = -1;
 	}
-	free_double(splitted_colors);
+	ft_free_double(splitted_colors);
 }
 
 char	*store_map(char **map, char *aux, int fd)

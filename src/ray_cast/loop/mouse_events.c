@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   world_info.c                                       :+:      :+:    :+:   */
+/*   mouse_events.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/01 11:31:50 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/06 10:18:26 by matoledo         ###   ########.fr       */
+/*   Created: 2026/03/23 06:29:20 by matoledo          #+#    #+#             */
+/*   Updated: 2026/04/18 15:53:37 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
-char	**world_info(char **w_map)
+int	mouse_hook(int button, int x, int y)
 {
-	static char		**world_map;
-
-	if (!world_map)
-		world_map = w_map;
-	return world_map;
+	if (button == 1)
+		printf("left clcik\n");
+	if (button == 2)
+		printf("scroll clcik\n");
+	if (button == 3)
+		printf("right clcik\n");
+	if (button == 4)
+		printf("scroll up\n");
+	if (button == 5)
+		printf("scroll down\n");
+	printf("x: %d\n", x);
+	printf("y: %d\n", y);
+	return (0);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+         #
+#    By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/03 16:12:21 by aosset-o          #+#    #+#              #
-#    Updated: 2026/03/09 15:51:28 by aosset-o         ###   ########.fr        #
+#    Updated: 2026/04/18 16:14:26 by matoledo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,11 @@ SRC = 	ft_isalpha.c ft_isdigit.c ft_isalnum.c \
 		ft_strrchr.c ft_strncmp.c ft_memchr.c \
 		ft_memcmp.c ft_strnstr.c ft_atoi.c \
 		ft_calloc.c ft_strdup.c ft_substr.c \
-		ft_strjoin.c ft_strtrim.c ft_putchar_fd.c\
-		ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c\
+		ft_strjoin.c ft_strtrim.c ft_putchar_fd.c \
+		ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 		ft_split.c ft_itoa.c ft_strmapi.c \
-		ft_striteri.c get_next_line.c get_next_line_buffer.c
+		ft_striteri.c get_next_line.c get_next_line_buffer.c \
+		ft_free_double.c
 
 OBJ = $(SRC:.c=.o)
 INCLUDE = libft.h

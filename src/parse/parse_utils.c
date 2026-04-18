@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 09:24:13 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/23 19:07:13 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/04/18 16:13:18 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int	check_extension(char *av1)
 	split = ft_split(av1, '.');
 	if (ft_strncmp(split[1], "cub", 4) != 0)
 	{
-		free_double(split);
+		ft_free_double(split);
 		return (1);
 	}
-	free_double(split);
+	ft_free_double(split);
 	return (0);
 }
 

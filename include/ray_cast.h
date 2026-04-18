@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   ray_cast.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 16:30:19 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/06 12:35:44 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/18 16:12:11 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-# include "include/mlx/mlx.h"
-# include "stdlib.h"
-# include "stdio.h"
-# include "math.h"
-# include "sys/time.h"
+#ifndef RAY_CAST_H
+# define RAY_CAST_H
+# include <math.h>
+# include <sys/time.h>
 # ifndef SCREEN_WIDTH
 #  define SCREEN_WIDTH 800
 # endif

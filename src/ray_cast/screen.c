@@ -6,11 +6,11 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 07:46:51 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/06 12:10:11 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/18 16:10:18 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 void	initialize_events(void	*window)
 {

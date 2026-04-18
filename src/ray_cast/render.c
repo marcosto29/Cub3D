@@ -6,11 +6,11 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 22:14:22 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/06 10:12:43 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/18 16:10:18 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 int	color(int wall)
 {
