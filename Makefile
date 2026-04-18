@@ -6,7 +6,7 @@
 #    By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/18 15:25:57 by matoledo          #+#    #+#              #
-#    Updated: 2026/04/18 16:44:47 by matoledo         ###   ########.fr        #
+#    Updated: 2026/04/18 16:55:23 by matoledo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CC = cc
 # -O0 -fno-omit-frame-pointer
 CFLAGS = -g -Wall -Werror -Wextra
 
-MLXFLAG =   -L include/mlx -lmlx -lXext -lX11 -lm
+LFLAG =  -L include/libft -lft -L include/mlx -lmlx -lXext -lX11 -lm
 
 IFLAGS = -I include -Imlx -Ilibft
 
@@ -37,7 +37,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@$(MAKE) -C include/mlx all
 	@$(MAKE) -C include/libft all
-	@$(CC) -o $(NAME) $(OBJ) $(MLXFLAG)
+	@$(CC) -o $(NAME) $(OBJ) $(LFLAG)
 	@echo "$(NAME): $(GREEN)object files were created$(RESET)"
 	@echo "$(NAME): $(GREEN)$(NAME) was created$(RESET)"
 

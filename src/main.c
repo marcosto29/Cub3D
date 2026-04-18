@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 13:59:04 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/18 16:43:09 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/18 16:57:08 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,13 @@ int	main(int argc, char *argv[])
 	read_map(data, fd);
 	if (check_textures(data) || check_colors(data) || check_map(data))
 		ft_exit(data, fd, 1);
+	printf("primer caracter: %s", data->map[0]);
+	world_info(data->map);
+    if (player() == NULL)
+        return (1);
+    if (initialize_minilibx() == 1)
+        return (1);
+    draw_image();
+    mlx_loop(screen()->mlx);
 	return (ft_exit(data, fd, 0), 0);
 }
