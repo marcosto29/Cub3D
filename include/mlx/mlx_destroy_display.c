@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   mlx_destroy_display.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 14:01:36 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/04/18 15:43:06 by matoledo         ###   ########.fr       */
+/*   Created: 2020/10/03 18:56:35 by mg                #+#    #+#             */
+/*   Updated: 2020/10/04 01:55:35 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "mlx_int.h"
 
-void	ft_putchar_fd(char c, int fd)
+int	mlx_destroy_display(t_xvar *xvar)
 {
-	write(fd, &c, 1);
+	XCloseDisplay(xvar->display);
 }
-

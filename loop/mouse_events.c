@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   mouse_events.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 14:01:36 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/04/18 15:43:06 by matoledo         ###   ########.fr       */
+/*   Created: 2026/03/23 06:29:20 by matoledo          #+#    #+#             */
+/*   Updated: 2026/04/06 12:37:15 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../cub3D.h"
 
-void	ft_putchar_fd(char c, int fd)
+int	mouse_hook(int button, int x, int y)
 {
-	write(fd, &c, 1);
+	if (button == 1)
+		printf("left clcik\n");
+	if (button == 2)
+		printf("scroll clcik\n");
+	if (button == 3)
+		printf("right clcik\n");
+	if (button == 4)
+		printf("scroll up\n");
+	if (button == 5)
+		printf("scroll down\n");
+	printf("x: %d\n", x);
+	printf("y: %d\n", y);
+	return (0);
 }
-

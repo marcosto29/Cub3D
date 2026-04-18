@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   world_info.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 14:01:36 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/04/18 15:43:06 by matoledo         ###   ########.fr       */
+/*   Created: 2026/04/01 11:31:50 by matoledo          #+#    #+#             */
+/*   Updated: 2026/04/06 10:18:26 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3D.h"
 
-void	ft_putchar_fd(char c, int fd)
+char	**world_info(char **w_map)
 {
-	write(fd, &c, 1);
-}
+	static char		**world_map;
 
+	if (!world_map)
+		world_map = w_map;
+	return world_map;
+}
