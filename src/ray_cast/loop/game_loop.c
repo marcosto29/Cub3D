@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 12:31:05 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/18 15:53:06 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/20 10:29:41 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_map(void)
 
 	w_map = world_info(NULL);
 	i = 0;
-	while (i < 24)
+	while (w_map[i])
 	{
 		printf("%s\n", w_map[i]);
 		i++;
@@ -41,7 +41,7 @@ int	game_loop(void)
 	old_time = current_time;
 	printf("FPS: %f\n", 1.0 / frame_time);
 	movement(frame_time);
-	visual(frame_time);
+	rotation(frame_time);
 	print_map();
 	draw_image();
 	return (0);

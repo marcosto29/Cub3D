@@ -6,39 +6,59 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 22:14:22 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/18 16:10:18 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/20 13:47:21 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	color(int wall)
+int	color(int hitted, int side)
 {
-	if (wall == 1)
-		return (0xFF0000);
-	if (wall == 2)
-		return (0x00FF00);
-	if (wall == 3)
-		return (0x0000FF);
-	if (wall == 4)
-		return (0xFF00FF);
 	//cielo
-	if (wall == 10)
+	if (hitted == 2)
 		return (0xADD8E6);
 	//suelo
-	if (wall == 11)
+	if (hitted == 3)
 		return (0x9C9C9C);
+	if (hitted == 1)
+	{
+		if (side == 0)
+			return (0xFF0000);
+		if (side == 1)
+			return (0x00FF00);
+		if (side == 2)
+			return (0x0000FF);
+		if (side == 3)
+			return (0x00FFFF);
+	}
 	return (0);
 }
 
-int	paint_pixels(int pixel_column, t_vector pixels_bound, void *img, int wall)
+int	pixel_color(t_vector pixels_bound, int i, int side, int wall)
+{
+	int				hitted;
+
+	if (i >= pixels_bound.x && i <= pixels_bound.y)
+		hitted = wall;
+	//si el pixel no coincide con una columna, pintar suelo o cielo en función de si está por encima de la mitad de la pantalla o por debajo
+	else
+	{
+		if (i <= SCREEN_HEIGHT / 2)
+			hitted = 2;
+		else
+			hitted = 3;
+	}
+	return (color(hitted, side));
+}
+
+int	paint_pixels(int pixel_column, t_vector pixels_bound, int wall, int side)
 {
 	t_image_data	img_d;
 	int				i;
 	int				pos;
-	int				p_color;
 
-	img_d.img = mlx_get_data_addr(img, &img_d.bpp, &img_d.ls, &img_d.end);
+	img_d.img = mlx_get_data_addr(screen()->img, &img_d.bpp,
+			&img_d.ls, &img_d.end);
 	i = 0;
 	while (i < SCREEN_HEIGHT)
 	{
@@ -46,18 +66,9 @@ int	paint_pixels(int pixel_column, t_vector pixels_bound, void *img, int wall)
 		//moviendonos de 4 en 4 (los bytes que sirven para representar el color de cada pixel)
 		pos = i * img_d.ls + pixel_column * 4;
 		//si el pixel pertenece a una columna, pintar columna
-		if (i >= pixels_bound.x && i <= pixels_bound.y)
-			p_color = wall;
-		//si el pixel no coincide con una columna, pintar suelo o cielo en función de si está por encima de la mitad de la pantalla o por debajo
-		else
-		{
-			if (i <= SCREEN_HEIGHT / 2)
-				p_color = 10;
-			else
-				p_color = 11;
-		}
 		*(unsigned int *)(img_d.img + pos)
-			= mlx_get_color_value(screen()->mlx, color(p_color));
+			= mlx_get_color_value(screen()->mlx,
+				pixel_color(pixels_bound, i, side, wall));
 		i++;
 	}
 	return (0);
@@ -188,14 +199,20 @@ void	draw_image(void)
 				dist.y += dist_ray_wall.y;
 				map_y += step.y;
 				//golpeo pared vertical
-				side = 0;
+				if (player()->position.y > map_y)
+					side = 0;
+				else
+					side = 1;
 			}
 			else
 			{
 				dist.x += dist_ray_wall.x;
 				map_x += step.x;
 				//golpeó pared horizontal
-				side = 1;
+				if (player()->position.x > map_x)
+					side = 2;
+				else
+					side = 3;
 			}
 			if (world_info(NULL)[map_x][map_y] - '0' > 0) 
 				hit = 1;
@@ -232,7 +249,7 @@ void	draw_image(void)
 		//DISTANCIA AL JUGADOR NO AL PLANO
 		//TODO: HACERLA AL PLANO
 		double		wall_hitted_distance;
-		if (side == 0)
+		if (side == 0 || side == 1)
 			wall_hitted_distance = dist.y - dist_ray_wall.y;
 		else
 			wall_hitted_distance = dist.x - dist_ray_wall.x;
@@ -254,7 +271,7 @@ void	draw_image(void)
 		if (pixel_bound.y > SCREEN_HEIGHT - 1)
 			pixel_bound.y = SCREEN_HEIGHT - 1;
 		//teniendo el pixel ya desde donde empieza a dibujar hasta donde acaba, se llaman a las funciones de la librería y se renderizan
-		paint_pixels(i, pixel_bound, screen()->img, world_info(NULL)[map_x][map_y] - '0');
+		paint_pixels(i, pixel_bound, world_info(NULL)[map_x][map_y] - '0', side);
 		i++;
 	}
 	mlx_put_image_to_window(screen()->mlx, screen()->win, screen()->img, 0, 0);

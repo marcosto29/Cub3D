@@ -1,42 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_free.c                                       :+:      :+:    :+:   */
+/*   ft_size.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/03 17:33:20 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/04/20 10:00:48 by matoledo         ###   ########.fr       */
+/*   Created: 2026/04/20 10:24:58 by matoledo          #+#    #+#             */
+/*   Updated: 2026/04/20 10:25:43 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-void	free_img(t_textures **imgs)
+size_t	ft_size(void *pointer, size_t data_type)
 {
-	int	i;
+	size_t	size;
 
-	i = 0;
-	while (imgs[i])
+	size = 0;
+	if (!pointer)
+		return (size);
+	while (*(char *)pointer)
 	{
-		if (imgs[i]->type)
-			free(imgs[i]->type);
-		if (imgs[i]->path)
-			free(imgs[i]->path);
-		free(imgs[i]);
-		i++;
+		size++;
+		pointer++;
 	}
-	free(imgs);
-	imgs = NULL;
-}
-
-void	free_data(t_data *data)
-{
-	if (data->imgs)
-		free_img(data->imgs);
-	if (data->colors)
-		free_img(data->colors);
-	if (data->map)
-		ft_free_double(data->map);
-	free(data);
+	return (size / data_type);
 }

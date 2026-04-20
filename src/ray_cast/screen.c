@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 07:46:51 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/18 16:10:18 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/20 10:03:04 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,6 @@ void	*create_window(void *mlx)
 		return (NULL);
 	initialize_events(window);
 	return (window);
-}
-
-void	*ft_calloc(size_t type, size_t size)
-{
-	char	*ptr;
-	size_t	counter;
-
-	counter = 0;
-	ptr = malloc(type * size);
-	if (!ptr)
-		return (NULL);
-	while (counter < type * size)
-	{
-		ptr[counter] = '\0';
-		counter++;
-	}
-	return ((void *)ptr);
 }
 
 t_screen	*create_screen(void)

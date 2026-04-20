@@ -6,35 +6,11 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 21:36:03 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/18 16:10:18 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/20 10:26:30 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-size_t	ft_size(void *pointer, size_t data_type)
-{
-	size_t	size;
-
-	size = 0;
-	if (!pointer)
-		return (size);
-	while (*(char *)pointer)
-	{
-		size++;
-		pointer++;
-	}
-	return (size / data_type);
-}
-
-void	rotate_vector(t_vector *vector, double angle)
-{
-	double	old_x;
-
-	old_x = vector->x;
-	vector->x = old_x * cos(angle) - vector->y * sin(angle);
-	vector->y = old_x * sin(angle) + vector->y * cos(angle);
-}
 
 t_vector	initial_plane(t_vector direction_ray, double ratio)
 {
@@ -73,10 +49,12 @@ t_vector	initial_position(char **worldMap)
 	int			y;
 
 	x = 0;
+	position.x = 0;
+	position.y = 0;
 	while (worldMap[x])
 	{
 		y = 0;
-		while (worldMap[y])
+		while (worldMap[x][y])
 		{
 			if (worldMap[x][y] == 'N' || worldMap[x][y] == 'S' ||
 				worldMap[x][y] == 'E' || worldMap[x][y] == 'W')
@@ -89,8 +67,6 @@ t_vector	initial_position(char **worldMap)
 		}
 		x++;
 	}
-	position.x = -1;
-	position.y = -1;
 	return (position);
 }
 
@@ -102,8 +78,6 @@ t_player	*create_player(char **map)
 	t_vector	camera_plane;
 
 	position = initial_position(map);
-	if (position.x == -1)
-		return (NULL);
 	//con una dirección x = -1 y = 0 el jugador mira a la izquierda
 	//si fuera x = 0 y = 1 miraría hacia alante
 	//En función de X o Y mirará en una dirección u otra

@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 16:30:19 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/18 16:12:11 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/20 10:28:48 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct image_data
 int			initialize_minilibx(void);
 int			key_pressed(int key_code);
 int			key_released(int key_code);
-void		visual(double frame_time);
+void		rotation(double frame_time);
 void		movement(double frame_time);
 int			game_loop(void);
 int			mouse_hook(int button, int x, int y);
@@ -78,4 +78,5 @@ t_player	*player(void);
 void		draw_image(void);
 char		**world_info(char **world_map);
 void		rotate_vector(t_vector *vector, double angle);
+void		print_map(void);
 #endif

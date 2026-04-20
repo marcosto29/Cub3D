@@ -1,16 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   visual.c                                           :+:      :+:    :+:   */
+/*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 12:34:32 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/18 15:53:37 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/20 10:31:14 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	rotate_vector(t_vector *vector, double angle)
+{
+	double	old_x;
+
+	old_x = vector->x;
+	vector->x = old_x * cos(angle) - vector->y * sin(angle);
+	vector->y = old_x * sin(angle) + vector->y * cos(angle);
+}
 
 char	look_direction(t_player *p)
 {
@@ -30,7 +39,7 @@ char	look_direction(t_player *p)
 	return ('E');
 }
 
-void	visual(double frame_time)
+void	rotation(double frame_time)
 {
 	t_player	*p;
 	char		**w_map;
