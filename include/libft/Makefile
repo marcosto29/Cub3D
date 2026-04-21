@@ -6,7 +6,7 @@
 #    By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/03 16:12:21 by aosset-o          #+#    #+#              #
-#    Updated: 2026/03/09 15:51:28 by aosset-o         ###   ########.fr        #
+#    Updated: 2026/04/21 12:13:17 by aosset-o         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC = 	ft_isalpha.c ft_isdigit.c ft_isalnum.c \
 		ft_strjoin.c ft_strtrim.c ft_putchar_fd.c\
 		ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c\
 		ft_split.c ft_itoa.c ft_strmapi.c \
-		ft_striteri.c get_next_line.c get_next_line_buffer.c
+		ft_striteri.c get_next_line.c get_next_line_buffer.c\
 
 OBJ = $(SRC:.c=.o)
 INCLUDE = libft.h

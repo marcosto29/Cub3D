@@ -6,39 +6,40 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 13:59:04 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/02 14:00:47 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/04/21 12:48:20 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_exit(t_data *data, int fd, int status)
+void	ft_free(t_data *data, t_parse *parse, int fd)
 {
 	if (data)
 		free_data(data);
+	if(parse)
+		free_parse(parse);
 	if (fd != 0)
 		close(fd);
-	exit(status);
 }
 
 int	main(int argc, char *argv[])
 {
 	int		fd;
 	t_data	*data;
+	t_parse *parse;
 
 	if (argc != 2)
 		return (ft_putendl_fd("Invalid number of arguments.", 1), 1);
 	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		return (ft_putendl_fd("Map file does not exist.", 1), 1);
-	if (check_extension(argv[1]) == 1)
-		return (close(fd), ft_putendl_fd("Invalid map extenson.", 1), 1);
+	if (fd == -1 || check_extension(argv[1]) == 1)
+		return (ft_putendl_fd("Invalid map.", 1), close(fd), 1);
 	data = ft_calloc(2, sizeof(t_data));
-	init_data(data, argv[1]);
-	if (data->map_len < 6)
-		return (ft_putendl_fd("Invalid format", 1), ft_exit(data, fd, 1), 1);
-	read_map(data, fd);
-	if (check_textures(data) || check_colors(data) || check_map(data))
-		ft_exit(data, fd, 1);
-	return (ft_exit(data, fd, 0), 0);
+	parse = ft_calloc(2, sizeof(t_parse));
+	init_structures(data, parse, argv[1]);
+	if (parse->map_len < 6 || parse->map_len > 256)
+		return (ft_putendl_fd("Invalid format.", 1), ft_free(data, parse, fd), 1);
+	read_map(data, parse, fd);
+	if (check_textures(data) || check_colors(data, parse) || check_map(data, parse))
+		return(ft_free(data, parse, fd), 1);
+	return(ft_free(data, parse, fd), 0);
 }

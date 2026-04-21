@@ -6,13 +6,13 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:24:16 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/04/02 14:01:23 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/04/21 12:38:34 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	store_splitted(char *str, t_data *data, int *pos_img, int *pos_clr)
+static int	store_splitted(char *str, t_data *data, t_parse *parse, int *pos_img, int *pos_clr)
 {
 	char **args;
 
@@ -23,7 +23,7 @@ static int	store_splitted(char *str, t_data *data, int *pos_img, int *pos_clr)
 		return (1);
 	if(args[0] && args[1] && !is_img(args[0]))
 	{
-		if (*pos_img >= data->img_len)
+		if (*pos_img >= parse->img_len)
 			return (free_double(args), 1);
 		data->imgs[*pos_img]->type = ft_strdup(args[0]);
 		data->imgs[*pos_img]->path = ft_strtrim(args[1], "\n");
@@ -31,17 +31,17 @@ static int	store_splitted(char *str, t_data *data, int *pos_img, int *pos_clr)
 	}
 	else if(args[0] && args[1] && !is_color(args[0]))
 	{
-		if (*pos_clr >= data->clr_len)
+		if (*pos_clr >= parse->clr_len)
 			return (free_double(args), 1);
-		data->colors[*pos_clr]->type = ft_strdup(args[0]);
-		data->colors[*pos_clr]->path = ft_strtrim(args[1], "\n");
+		parse->colors[*pos_clr]->type = ft_strdup(args[0]);
+		parse->colors[*pos_clr]->path = ft_strtrim(args[1], "\n");
 		(*pos_clr)++;
 	}
 	free_double(args);
 	return (0);
 }
 
-int	store_elements(int fd, t_data *data, char **aux)
+int	store_elements(int fd, t_data *data, t_parse *parse, char **aux)
 {
 	int pos_img;
 	int pos_clr;
@@ -50,12 +50,12 @@ int	store_elements(int fd, t_data *data, char **aux)
 
 	pos_img = 0;
 	pos_clr = 0;
-	len = data->img_len + data->clr_len;
+	len = parse->img_len + parse->clr_len;
 	i = 0;
 	while (i < len)
 	{
 		*aux = skip_empty(*aux, fd);
-		if (store_splitted(*aux, data, &pos_img, &pos_clr) != 0)
+		if (store_splitted(*aux, data, parse, &pos_img, &pos_clr) != 0)
 			return (1);
 		free(*aux);
 		*aux = get_next_line(fd);
@@ -109,13 +109,13 @@ char	*store_map(char **map, char *aux, int fd)
 	return (aux);
 }
 
-void	read_map(t_data *data, int fd)
+void	read_map(t_data *data, t_parse *parse, int fd)
 {
 	char	*aux;
 	int		failed_elements;
 
 	aux = get_next_line(fd);
-	failed_elements = store_elements(fd, data, &aux);
+	failed_elements = store_elements(fd, data, parse, &aux);
 	if (failed_elements != 0)
 	{
 		data->floor[0] = -1;
@@ -123,10 +123,10 @@ void	read_map(t_data *data, int fd)
 	}
 	aux = skip_empty(aux, fd);
 	aux = store_map(data->map, aux, fd);
-	if (data->colors[0]->path && data->colors[1]->path)
+	if (parse->colors[0]->path && parse->colors[1]->path)
 	{
-		colors_int(data->colors[0], data, data->colors[0]->type[0]);
-		colors_int(data->colors[1], data, data->colors[1]->type[0]);
+		colors_int(parse->colors[0], data, parse->colors[0]->type[0]);
+		colors_int(parse->colors[1], data, parse->colors[1]->type[0]);
 	}
 	if (aux)
 		free(aux);
