@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 13:59:04 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/21 12:48:20 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/04/21 13:14:52 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char *argv[])
 	parse = ft_calloc(2, sizeof(t_parse));
 	init_structures(data, parse, argv[1]);
 	if (parse->map_len < 6 || parse->map_len > 256)
-		return (ft_putendl_fd("Invalid format.", 1), ft_free(data, parse, fd), 1);
+		return (ft_putendl_fd("Bad format.", 1), ft_free(data, parse, fd), 1);
 	read_map(data, parse, fd);
 	if (check_textures(data) || check_colors(data, parse) || check_map(data, parse))
 		return(ft_free(data, parse, fd), 1);
