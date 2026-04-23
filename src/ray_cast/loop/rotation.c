@@ -6,13 +6,13 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 12:34:32 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/20 10:31:14 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/21 17:32:51 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	rotate_vector(t_vector *vector, double angle)
+void	rotate_vector(d_vector *vector, double angle)
 {
 	double	old_x;
 

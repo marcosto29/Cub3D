@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 16:30:19 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/20 10:28:48 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/23 20:42:58 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # endif
 # ifndef SCREEN_HEIGHT
 #  define SCREEN_HEIGHT 800
+# endif
+# ifndef WALL_HEIGHT
+#  define WALL_HEIGHT SCREEN_HEIGHT / 2
 # endif
 
 typedef struct key_state
@@ -39,17 +42,23 @@ typedef struct screen
 	t_key_state	keys;
 }				t_screen;
 
-typedef struct vector
+typedef struct double_vector
 {
 	double	x;
 	double	y;
-}				t_vector;
+}				d_vector;
+
+typedef struct integer_vector
+{
+	int	x;
+	int	y;
+}				i_vector;
 
 typedef struct player
 {
-	t_vector	position;
-	t_vector	direction;
-	t_vector	camera_plane;
+	d_vector	position;
+	d_vector	direction;
+	d_vector	camera_plane;
 	double		speed;
 }				t_player;
 
@@ -61,22 +70,49 @@ typedef struct image_data
 	int		ls;
 	//endian
 	int		end;
-	//image
-	char	*img;
 }				t_image_data;
 
-int			initialize_minilibx(void);
-int			key_pressed(int key_code);
-int			key_released(int key_code);
-void		rotation(double frame_time);
-void		movement(double frame_time);
-int			game_loop(void);
-int			mouse_hook(int button, int x, int y);
-int			close_window(void);
-t_screen	*screen(void);
-t_player	*player(void);
-void		draw_image(void);
-char		**world_info(char **world_map);
-void		rotate_vector(t_vector *vector, double angle);
-void		print_map(void);
+typedef struct texture_data
+{
+	char			*texture;
+	void			*img_ptr;
+
+	int				width;
+	int				height;
+	
+	t_image_data	img_data;
+}				t_texture_data;
+
+
+typedef struct ray_cast
+{
+	d_vector	ray;
+	d_vector	dist_ray_wall;
+	d_vector	cum_dist;
+	i_vector	pixel_bound;
+	double		x_coor;
+	i_vector	step_direction;
+	i_vector	cum_pos;
+}				t_ray_cast;
+
+int				initialize_minilibx(void);
+int				key_pressed(int key_code);
+int				key_released(int key_code);
+void			rotation(double frame_time);
+void			movement(double frame_time);
+int				game_loop(void);
+int				mouse_hook(int button, int x, int y);
+int				close_window(void);
+t_screen		*screen(void);
+t_player		*player(void);
+void			draw_image(void);
+char			**world_info(char **world_map);
+void			rotate_vector(d_vector *vector, double angle);
+void			print_map(void);
+void			preparations(int pixel, t_ray_cast *ray_cast);
+void			initial_distance(t_ray_cast *ray_cast);
+void			set_hit_side(int *side, i_vector cum_pos, int axis);
+void			hit_loop(t_ray_cast *ray_cast, int *side);
+void			height_pixels(int side, t_ray_cast *ray_cast);
+
 #endif

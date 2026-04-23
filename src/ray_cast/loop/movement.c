@@ -6,15 +6,15 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 12:32:53 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/20 13:56:06 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/23 21:08:25 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_vector	move(t_player *p, double frame_time)
+d_vector	move(t_player *p, double frame_time)
 {
-	t_vector	new_pos;
+	d_vector	new_pos;
 
 	new_pos = p->position;
 	if (screen()->keys.w == 1)
@@ -40,13 +40,31 @@ t_vector	move(t_player *p, double frame_time)
 	return (new_pos);
 }
 
-void	update_position(t_player *p, char **w_map, t_vector new_pos)
+int	get_map_height(char **map)
+{
+	int	i;
+
+	if (!map)
+		return (0);
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
+}
+
+void	update_position(t_player *p, char **w_map, d_vector new_pos)
 {
 	static char	previous_char = '0';
 	char		aux;
-	t_vector	previous_pos;
+	d_vector	previous_pos;
 
 	previous_pos = p->position;
+	if ((int)new_pos.x < 0
+		|| (int)new_pos.x >= get_map_height(w_map))
+		return ;
+	if ((int)new_pos.y < 0
+		|| (int)new_pos.y >= (int)ft_strlen(w_map[(int)new_pos.x]))
+		return ;
 	if (w_map[(int)new_pos.x][(int)previous_pos.y] == '0' ||
 		ft_isalpha(w_map[(int)new_pos.x][(int)previous_pos.y]) == 1)
 		p->position.x = new_pos.x;
@@ -61,7 +79,7 @@ void	update_position(t_player *p, char **w_map, t_vector new_pos)
 
 void	movement(double frame_time)
 {
-	t_vector	new_pos;
+	d_vector	new_pos;
 	t_player	*p;
 	char		**w_map;
 

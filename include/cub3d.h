@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 17:00:22 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/04/18 16:42:44 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/23 12:37:19 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
+
+t_texture_data	*get_texture(t_textures **imgs);
 
 #endif
