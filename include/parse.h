@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 09:25:10 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/04/21 12:48:05 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/04/21 21:31:52 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,6 @@ typedef struct s_textures
 	char		*path;
 }				t_textures;
 
-typedef struct s_parse
-{
-	int			map_len;
-	int			img_len;
-	int			clr_len;
-	t_textures	**colors;
-}t_parse;
-
 typedef struct s_data
 {
 	int			floor[3];
@@ -35,6 +27,13 @@ typedef struct s_data
 	t_textures	**imgs;
 }				t_data;
 
+typedef struct s_parse
+{
+	int			map_len;
+	int			img_len;
+	int			clr_len;
+	t_textures	**colors;
+}t_parse;
 void			init_structures(t_data *data, t_parse *parse, char *av1);
 void			init_textures(t_textures **imgs, int len);
 void			free_double(char **pointer);
