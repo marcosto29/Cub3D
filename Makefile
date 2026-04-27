@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+         #
+#    By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/18 15:25:57 by matoledo          #+#    #+#              #
-#    Updated: 2026/04/21 21:52:39 by matoledo         ###   ########.fr        #
+#    Updated: 2026/04/27 19:18:25 by aosset-o         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ RESET = \033[0m
 CC = cc
 
 # -O0 -fno-omit-frame-pointer
-CFLAGS = -g -Wall -Werror -Wextra
+CFLAGS = -g -Wall -Werror -Wextra -O3
 
 LFLAG =  -L include/libft -lft -L include/mlx -lmlx -lXext -lX11 -lm
 
