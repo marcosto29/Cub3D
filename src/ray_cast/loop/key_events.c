@@ -6,13 +6,13 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 06:12:12 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/18 15:53:37 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/27 20:30:21 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	key_pressed(int key_code)
+int	key_pressed(int key_code, t_data *data)
 {
 	if (key_code == 0xff51)
 		screen()->keys.left = 1;
@@ -27,7 +27,7 @@ int	key_pressed(int key_code)
 	if (key_code == 0x64)
 		screen()->keys.d = 1;
 	if (key_code == 0xff1b)
-		close_window();
+		close_window(data);
 	return (1);
 }
 

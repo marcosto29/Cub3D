@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 13:59:04 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/27 19:16:19 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/04/27 20:28:43 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,12 @@ int	main(int argc, char *argv[])
 	read_map(data, parse, fd);
 	if (check_textures(data) || check_colors(data, parse) || check_map(data, parse))
 		return(ft_free(data, parse, fd), 1);
-	world_info(data->map);
-	if (player() == NULL || initialize_minilibx() == 1)
+	prepare_colors(data->ceiling, data->floor);
+	if (get_texture(data->imgs) == NULL)
 		return (1);
-	get_texture(data->imgs);
+	world_info(data->map);
+	if (player() == NULL || initialize_minilibx(data) == 1)
+		return (1);
 	ft_free_parse(data, parse, fd);
 	draw_image();
 	mlx_loop(screen()->mlx);

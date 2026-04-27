@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 22:14:22 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/23 21:09:18 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/27 20:20:50 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,22 @@ int	pixel_color_img(int side, int i, t_ray_cast *ray_cast)
 
 int	color(int hitted, int side, int i, t_ray_cast *ray_cast)
 {
+	int	*cols;
+
 	if (hitted == 2)
-		return (0xADD8E6);
+	{
+		cols = get_colors(NULL)[0];
+		return ((cols[0] & 0xff) << 16) +
+		((cols[1] & 0xff) << 8) +
+		(cols[2] & 0xff);
+	}
 	if (hitted == 3)
-		return (0x9C9C9C);
+	{
+		cols = get_colors(NULL)[1];
+		return ((cols[0] & 0xff) << 16) +
+		((cols[1] & 0xff) << 8) +
+		(cols[2] & 0xff);		
+	}
 	if (hitted == 1)
 		return (pixel_color_img(side, i, ray_cast));
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 17:00:22 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/04/23 12:37:19 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/27 20:31:05 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,8 @@
 # include <stdlib.h>
 
 t_texture_data	*get_texture(t_textures **imgs);
+int				initialize_minilibx(t_data *data);
+int				close_window(t_data *data);
+int				key_pressed(int key_code, t_data *data);
 
 #endif
