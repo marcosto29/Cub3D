@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 18:32:01 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/23 20:40:17 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/28 17:15:09 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,7 @@ void	hit_loop(t_ray_cast *ray_cast, int *side)
 
 void	height_pixels(int side, t_ray_cast *ray_cast)
 {
-	double		wall_hitted_distance;
-	double		height;
+	double	wall_hitted_distance;
 
 	if (side == 0 || side == 1)
 		wall_hitted_distance = ray_cast->cum_dist.y - ray_cast->dist_ray_wall.y;
@@ -105,11 +104,11 @@ void	height_pixels(int side, t_ray_cast *ray_cast)
 		wall_hitted_distance = ray_cast->cum_dist.x - ray_cast->dist_ray_wall.x;
 	if (wall_hitted_distance == 0)
 		wall_hitted_distance = 0.000001;
-	height = WALL_HEIGHT / wall_hitted_distance;
-	ray_cast->pixel_bound.x = SCREEN_HEIGHT / 2 - height / 2;
+	ray_cast->wall_height = WALL_HEIGHT / wall_hitted_distance;
+	ray_cast->pixel_bound.x = SCREEN_HEIGHT / 2 - ray_cast->wall_height / 2;
 	if (ray_cast->pixel_bound.x < 0)
 		ray_cast->pixel_bound.x = 0;
-	ray_cast->pixel_bound.y = SCREEN_HEIGHT / 2 + height / 2;
+	ray_cast->pixel_bound.y = SCREEN_HEIGHT / 2 + ray_cast->wall_height / 2;
 	if (ray_cast->pixel_bound.y > SCREEN_HEIGHT - 1)
 		ray_cast->pixel_bound.y = SCREEN_HEIGHT - 1;
 	if (side == 0 || side == 1)
@@ -118,5 +117,5 @@ void	height_pixels(int side, t_ray_cast *ray_cast)
 	else
 		ray_cast->x_coor = (double)player()->position.y + wall_hitted_distance
 			* ray_cast->ray.y;
-	ray_cast->x_coor -= floor((ray_cast->x_coor));
+	ray_cast->x_coor -= floor(ray_cast->x_coor);
 }

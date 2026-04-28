@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 21:01:06 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/27 20:18:11 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/28 16:54:21 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,16 @@ t_texture_data	create_texture_node(t_textures *img)
 			&txt_data.width,
 			&txt_data.height);
 	if (!txt_data.img_ptr)
+	{
+		printf("no se puede abrir el archivo: %s\n", img->path);
 		return (txt_data);
+	}
 	txt_data.texture = mlx_get_data_addr(
 			txt_data.img_ptr,
 			&txt_data.img_data.bpp,
 			&txt_data.img_data.ls,
 			&txt_data.img_data.end);
+	txt_data.side = ft_strdup(img->type);
 	return (txt_data);
 }
 

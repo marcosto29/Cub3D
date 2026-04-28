@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 16:30:19 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/27 20:30:57 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/28 17:12:22 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ typedef struct texture_data
 
 	int				width;
 	int				height;
-	
+
+	char			*side;
 	t_image_data	img_data;
 }				t_texture_data;
 
@@ -91,6 +92,7 @@ typedef struct ray_cast
 	d_vector	cum_dist;
 	i_vector	pixel_bound;
 	double		x_coor;
+	double		wall_height;
 	i_vector	step_direction;
 	i_vector	cum_pos;
 }				t_ray_cast;
@@ -114,5 +116,7 @@ void			height_pixels(int side, t_ray_cast *ray_cast);
 void			free_textures(t_texture_data *textures);
 void			prepare_colors(int *top, int *bottom);
 int				**get_colors(int **colors);
+void			free_mlx(void);
+
 
 #endif
