@@ -6,35 +6,11 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 22:14:22 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/28 17:16:24 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/28 19:46:26 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-t_texture_data	get_side(t_texture_data *data, char *side)
-{
-	int	i;
-
-	i = 0;
-	while (ft_strncmp(data[i].side, side, 2) != 0)
-		i++;
-	return (data[i]);
-}
-
-t_texture_data	texture_side(int side)
-{
-	t_texture_data	*texture;
-
-	texture = get_texture(NULL);
-	if (side == 0)
-		return (get_side(texture, "EA"));
-	if (side == 1)
-		return (get_side(texture, "WE"));
-	if (side == 2)
-		return (get_side(texture, "SO"));
-	return (get_side(texture, "NO"));
-}
 
 int	pixel_color_img(int side, int i, t_ray_cast *ray_cast)
 {

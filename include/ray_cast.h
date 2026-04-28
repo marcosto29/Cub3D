@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 16:30:19 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/28 17:12:22 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/28 19:47:17 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,6 @@ void			free_textures(t_texture_data *textures);
 void			prepare_colors(int *top, int *bottom);
 int				**get_colors(int **colors);
 void			free_mlx(void);
-
+t_texture_data	texture_side(int side);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 21:01:06 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/28 16:54:21 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/28 19:46:20 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,23 @@ t_texture_data	*get_texture(t_textures **imgs)
 	return (textures_data);
 }
 
-int	**get_colors(int **colors)
+t_texture_data	texture_side(int side)
 {
-	static int	**cols = NULL;
+	t_texture_data	*texture;
+	int				i;
+	char			*cside;
 
-	if (!cols && colors)
-		cols = colors;
-	return (cols);
-}
-
-void	prepare_colors(int *top, int *bottom)
-{
-	int	**colors;
-
-	colors = ft_calloc(2, sizeof(int *));
-	colors[0] = top;
-	colors[1] = bottom;
-	get_colors(colors);
+	i = 0;
+	texture = get_texture(NULL);
+	if (side == 0)
+		cside = "EA";
+	if (side == 1)
+		cside = "WE";
+	if (side == 2)
+		cside = "SO";
+	if (side == 3)
+		cside = "NO";
+	while (ft_strncmp(texture[i].side, cside, 2) != 0)
+		i++;
+	return (texture[i]);
 }
