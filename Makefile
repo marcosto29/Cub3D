@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+         #
+#    By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/18 15:25:57 by matoledo          #+#    #+#              #
-#    Updated: 2026/04/28 19:48:49 by matoledo         ###   ########.fr        #
+#    Updated: 2026/04/29 15:58:01 by aosset-o         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ IFLAGS = -I include -Imlx -Ilibft
 
 NAME = cub3D
 
-SRC = src/main.c src/parse/store_map.c src/parse/parse_free.c src/parse/parse_init.c \
+SRC = src/main.c src/parse/store_map.c src/parse/parse_free.c src/parse/parse.c \
 src/parse/parse_utils.c src/parse/check_textures.c src/parse/check_map.c src/parse/map_utils.c \
 src/ray_cast/free.c src/ray_cast/screen.c src/ray_cast/player.c src/ray_cast/render.c src/ray_cast/world_info.c src/ray_cast/ray_cast.c src/ray_cast/textures.c src/ray_cast/colors.c\
 src/ray_cast/loop/key_events.c src/ray_cast/loop/mouse_events.c src/ray_cast/loop/game_loop.c src/ray_cast/loop/movement.c src/ray_cast/loop/rotation.c

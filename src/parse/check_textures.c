@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 19:45:22 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/04/27 19:07:40 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/04/29 16:05:34 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	check_colors_type(t_textures **imgs)
 	}
 	return (0);
 }
+
 int	check_commas(t_textures **imgs)
 {
 	int	i;
@@ -111,6 +112,7 @@ int	check_commas(t_textures **imgs)
 	}
 	return (0);
 }
+
 int	check_colors(t_data *data, t_parse *parse)
 {
 	int	i;

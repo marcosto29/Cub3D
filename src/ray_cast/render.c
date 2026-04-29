@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 22:14:22 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/28 19:46:26 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/29 16:13:29 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	pixel_color_img(int side, int i, t_ray_cast *ray_cast)
 	t_texture_data	texture;
 	double			offset;
 	double			percentage;
-	i_vector		tex;
+	t_ivector		tex;
 	int				pos;
 
 	texture = texture_side(side);

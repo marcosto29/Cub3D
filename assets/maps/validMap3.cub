@@ -1,0 +1,19 @@
+C 224,255,255
+F 136,123,55
+
+NO assets/textures/debug.xpm
+SO assets/textures/debug2.xpm
+WE assets/textures/debug3.xpm
+EA assets/textures/debug4.xpm
+
+
+11111111111
+10000011111
+11111000001
+100N0000001
+10000100001
+10001100001
+10000100001
+10000000011
+10000000001
+11111111111

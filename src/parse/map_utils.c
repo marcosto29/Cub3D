@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 17:16:43 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/03/23 19:05:55 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/04/29 16:06:10 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ int	is_safe(char **map, int i, int j)
 {
 	if (j == 0)
 		return (1);
-	if ((j >= (int)ft_strlen(map[i + 1])) || (j >= (int)ft_strlen(map[i - 1])))
+	if ((j >= (int)ft_strlen(map[i + 1]) - 1) || (j >= (int)ft_strlen(map[i
+					- 1]) - 1))
 		return (1);
 	if (is_valid_char(map[i + 1][j]) == 1 || is_valid_char(map[i - 1][j]) == 1
 		|| is_valid_char(map[i][j + 1]) == 1 || is_valid_char(map[i][j

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_init.c                                       :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 16:02:10 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/04/27 19:08:49 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/04/29 16:39:22 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	map_size(int fd)
 	{
 		free(aux);
 		aux = get_next_line(fd);
-	}	
+	}
 	while (aux && aux[0] != '\n')
 	{
 		map_len++;
@@ -72,10 +72,24 @@ void	init_structures(t_data *data, t_parse *parse, char *av1)
 	parse->img_len = 4;
 	parse->clr_len = 2;
 	close(fd2);
-	if (parse->map_len >= 6 && parse->map_len <= 256)
+	if (parse->map_len >= 3 && parse->map_len <= 128)
 		data->map = ft_calloc(parse->map_len + 1, sizeof(char *));
 	data->imgs = ft_calloc(parse->img_len + 1, sizeof(t_textures *));
 	init_textures(data->imgs, parse->img_len);
 	parse->colors = ft_calloc(parse->clr_len + 1, sizeof(t_textures *));
 	init_textures(parse->colors, parse->clr_len);
+}
+
+int	ft_parse(t_data *data, t_parse *parse, int fd)
+{
+	if (parse->map_len < 3 || parse->map_len > 128)
+		return (ft_putendl_fd("Bad format.", 1), 1);
+	read_map(data, parse, fd);
+	if (check_textures(data))
+		return (1);
+	if (check_colors(data, parse))
+		return (1);
+	if (check_map(data, parse))
+		return (1);
+	return (0);
 }

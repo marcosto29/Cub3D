@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 17:33:20 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/04/27 19:17:07 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/04/29 16:06:41 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@ void	free_img(t_textures **imgs)
 	imgs = NULL;
 }
 
-void free_parse(t_parse *parse)
+void	free_parse(t_parse *parse)
 {
-	if(parse->colors)
+	if (parse->colors)
 		free_img(parse->colors);
 	free(parse);
 	parse = NULL;
 }
+
 void	free_data(t_data *data)
 {
 	if (data->imgs)

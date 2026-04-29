@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 18:32:01 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/28 17:15:09 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/29 16:13:29 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	initial_distance(t_ray_cast *ray_cast)
 			* ray_cast->dist_ray_wall.y;
 }
 
-void	set_hit_side(int *side, i_vector cum_pos, int axis)
+void	set_hit_side(int *side, t_ivector cum_pos, int axis)
 {
 	if (axis == 0)
 	{

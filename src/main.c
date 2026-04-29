@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 13:59:04 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/28 19:53:16 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/29 16:07:45 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ int	main(int argc, char *argv[])
 	data = ft_calloc(2, sizeof(t_data));
 	parse = ft_calloc(2, sizeof(t_parse));
 	init_structures(data, parse, argv[1]);
-	if (parse->map_len < 6 || parse->map_len > 256)
-		return (ft_putendl_fd("Bad format.", 1), ft_free(data, parse, fd), 1);
-	read_map(data, parse, fd);
-	if (check_textures(data) || check_colors(data, parse) || check_map(data, parse))
+	if (ft_parse(data, parse, fd))
+		return (ft_free(data, parse, fd), 1);
+	if (check_textures(data) || check_colors(data, parse) || check_map(data,
+			parse))
 		return (ft_free(data, parse, fd), 1);
 	if (init_ray_cast(data, parse, fd) == 1)
 		return (1);

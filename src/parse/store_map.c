@@ -6,15 +6,16 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:24:16 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/04/27 19:17:47 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/04/29 16:07:22 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	store_splitted(char *str, t_data *data, t_parse *parse, int pos_img[2])
+static int	store_splitted(char *str, t_data *data, t_parse *parse,
+		int pos_img[2])
 {
-	char **args;
+	char	**args;
 
 	if (!str)
 		return (1);
@@ -43,9 +44,9 @@ static int	store_splitted(char *str, t_data *data, t_parse *parse, int pos_img[2
 
 int	store_elements(int fd, t_data *data, t_parse *parse, char **aux)
 {
-	int pos_img[2];
-	int i;
-	int len;
+	int	pos_img[2];
+	int	i;
+	int	len;
 
 	pos_img[0] = 0;
 	pos_img[1] = 0;

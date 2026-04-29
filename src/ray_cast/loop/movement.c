@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 12:32:53 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/23 21:08:25 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/04/29 16:13:16 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-d_vector	move(t_player *p, double frame_time)
+t_dvector	move(t_player *p, double frame_time)
 {
-	d_vector	new_pos;
+	t_dvector	new_pos;
 
 	new_pos = p->position;
 	if (screen()->keys.w == 1)
@@ -52,11 +52,11 @@ int	get_map_height(char **map)
 	return (i);
 }
 
-void	update_position(t_player *p, char **w_map, d_vector new_pos)
+void	update_position(t_player *p, char **w_map, t_dvector new_pos)
 {
 	static char	previous_char = '0';
 	char		aux;
-	d_vector	previous_pos;
+	t_dvector	previous_pos;
 
 	previous_pos = p->position;
 	if ((int)new_pos.x < 0
@@ -79,7 +79,7 @@ void	update_position(t_player *p, char **w_map, d_vector new_pos)
 
 void	movement(double frame_time)
 {
-	d_vector	new_pos;
+	t_dvector	new_pos;
 	t_player	*p;
 	char		**w_map;
 
