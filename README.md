@@ -25,8 +25,8 @@ The program takes a map file as an argument. Maps are available in the assets/ma
 
 ## Resources
 
-This project has been developed thanks to the Minilibx documentation where the behaviour of the Minilbx window management and memory manage is clearly explained.
+This project has been developed thanks to the Minilibx documentation where the behaviour of the Minilbx window management and memory manage is clearly explained, [Minilibx help](https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html), this page was really helpful where some of the main funcionalities of the minilibx are explained with examples, it was a lifesavior around the xpm and textures.
 
 Copilot has been used to complement this information (never asking it to create code or functionality from scratch).
 
-Finally, Various sites for vectors and raycasting understanding.
+Finally, Various sites for vectors and raycasting understanding, surprisingly wikipedia was incredibly helpful to understand better some mathematic concepts surrounding vectors and geometry, for the main raycast algorithm, there were lot of pages involving the understanding, [highlighting this one](https://harm-smits.github.io/42docs/projects/cub3d).
