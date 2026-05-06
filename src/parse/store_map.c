@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:24:16 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/04/29 16:07:22 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/05/06 17:05:32 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	store_splitted(char *str, t_data *data, t_parse *parse,
 		data->imgs[pos_img[0]]->path = ft_strtrim(args[1], "\n");
 		pos_img[0]++;
 	}
-	else if (args[0] && args[1] && !is_color(args[0]))
+	else if (args[0] && args[1])
 	{
 		if (pos_img[1] >= parse->clr_len)
 			return (ft_free_double(args), 1);

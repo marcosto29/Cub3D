@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 17:33:20 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/04/29 16:06:41 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/05/06 17:46:39 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	free_img(t_textures **imgs)
 	int	i;
 
 	i = 0;
+	if (!imgs)
+		return ;
 	while (imgs[i])
 	{
 		if (imgs[i]->type)
