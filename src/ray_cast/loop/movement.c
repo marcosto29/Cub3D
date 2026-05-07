@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 12:32:53 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/29 16:13:16 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/05/07 09:16:16 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,27 +52,36 @@ int	get_map_height(char **map)
 	return (i);
 }
 
+int	is_walkable(char **map, double x, double y)
+{
+	if (map[(int)x][(int)y] == '1')
+		return (0);
+	return (1);
+}
+
 void	update_position(t_player *p, char **w_map, t_dvector new_pos)
 {
 	static char	previous_char = '0';
 	char		aux;
-	t_dvector	previous_pos;
+	t_dvector	prev;
 
-	previous_pos = p->position;
-	if ((int)new_pos.x < 0
-		|| (int)new_pos.x >= get_map_height(w_map))
-		return ;
-	if ((int)new_pos.y < 0
-		|| (int)new_pos.y >= (int)ft_strlen(w_map[(int)new_pos.x]))
-		return ;
-	if (w_map[(int)new_pos.x][(int)previous_pos.y] == '0' ||
-		ft_isalpha(w_map[(int)new_pos.x][(int)previous_pos.y]) == 1)
+	prev = p->position;
+	if (new_pos.x < 0)
+		new_pos.x = 0;
+	else if (new_pos.x >= get_map_height(w_map))
+		new_pos.x = get_map_height(w_map) - 1;
+	if (new_pos.y < 0)
+		new_pos.y = 0;
+	else if (new_pos.y >= ft_strlen(w_map[(int)new_pos.x]))
+		new_pos.y = ft_strlen(w_map[(int)new_pos.x]) - 1;
+	if (is_walkable(w_map, new_pos.x + p->hitbox_radius, p->position.y)
+		&& is_walkable(w_map, new_pos.x - p->hitbox_radius, p->position.y))
 		p->position.x = new_pos.x;
-	if (w_map[(int)previous_pos.x][(int)new_pos.y] == '0' ||
-		ft_isalpha(w_map[(int)previous_pos.x][(int)new_pos.y]) == 1)
+	if (is_walkable(w_map, p->position.x, new_pos.y + p->hitbox_radius)
+		&& is_walkable(w_map, p->position.x, new_pos.y - p->hitbox_radius))
 		p->position.y = new_pos.y;
-	aux = w_map[(int)previous_pos.x][(int)previous_pos.y];
-	w_map[(int)previous_pos.x][(int)previous_pos.y] = previous_char;
+	aux = w_map[(int)prev.x][(int)prev.y];
+	w_map[(int)prev.x][(int)prev.y] = previous_char;
 	previous_char = w_map[(int)p->position.x][(int)p->position.y];
 	w_map[(int)p->position.x][(int)p->position.y] = aux;
 }

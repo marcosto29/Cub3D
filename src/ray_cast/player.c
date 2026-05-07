@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 21:36:03 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/29 16:13:16 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/05/07 09:16:16 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ t_player	*create_player(char **map)
 	player->direction = direction_ray;
 	player->camera_plane = camera_plane;
 	player->speed = 5;
+	player->hitbox_radius = 0.2;
 	return (player);
 }
 

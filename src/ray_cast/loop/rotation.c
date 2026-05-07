@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 12:34:32 by matoledo          #+#    #+#             */
-/*   Updated: 2026/04/29 16:13:16 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/05/07 09:03:25 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,4 @@ void	rotation(double frame_time)
 		rotate_vector(&p->camera_plane, -(frame_time * p->speed));
 	}
 	w_map[(int)p->position.x][(int)p->position.y] = look_direction(p);
-	printf("direction = %f, %f\n", p->direction.x, p->direction.y);
-	printf("direction = %c\n", w_map[(int)p->position.x][(int)p->position.y]);
 }
