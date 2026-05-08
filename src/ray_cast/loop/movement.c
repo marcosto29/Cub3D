@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 12:32:53 by matoledo          #+#    #+#             */
-/*   Updated: 2026/05/08 14:25:06 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/05/08 14:48:18 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,12 @@ int	get_map_height(char **map)
 	return (i);
 }
 
-int	is_walkable(char **map, double x, double y)
+static int	can_move(char **map, double x, double y, double r)
 {
-	if (map[(int)x][(int)y] == '1')
-		return (0);
-	return (1);
+	return (is_walkable(map, x - r, y - r) && is_walkable(map, x + r, y - r)
+		&& is_walkable(map, x - r, y + r) && is_walkable(map, x + r, y + r)
+		&& is_walkable(map, x, y - r) && is_walkable(map, x, y + r)
+		&& is_walkable(map, x + r, y) && is_walkable(map, x - r, y));
 }
 
 void	update_position(t_player *p, char **w_map, t_dvector new_pos)

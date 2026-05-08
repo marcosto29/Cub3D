@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 16:30:19 by matoledo          #+#    #+#             */
-/*   Updated: 2026/05/08 14:25:00 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/05/08 14:48:36 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,5 @@ void				prepare_colors(int *top, int *bottom);
 int					**get_colors(int **colors);
 void				free_mlx(void);
 t_texture_data		texture_side(int side);
-static int			can_move(char **map, double x, double y, double r);
 int					is_walkable(char **map, double x, double y);
-
 #endif

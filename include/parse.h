@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 09:25:10 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/05/06 17:07:03 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/05/08 14:56:36 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void			colors_int(t_textures *colors, t_data *data, char c);
 int				is_img(char *str);
 int				is_color(char *str);
 int				is_valid(char c);
+int				is_safe(char **map, int i, int j);
+int				is_valid_char(char c);
 int				check_extension(char *av1);
 int				check_textures(t_data *data);
 int				check_colors(t_data *data, t_parse *parse);

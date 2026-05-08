@@ -6,16 +6,15 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:24:01 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/05/08 14:25:14 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/05/08 14:47:31 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	can_move(char **map, double x, double y, double r)
+int	is_walkable(char **map, double x, double y)
 {
-	return (is_walkable(map, x - r, y - r) && is_walkable(map, x + r, y - r)
-		&& is_walkable(map, x - r, y + r) && is_walkable(map, x + r, y + r)
-		&& is_walkable(map, x, y - r) && is_walkable(map, x, y + r)
-		&& is_walkable(map, x + r, y) && is_walkable(map, x - r, y));
+	if (map[(int)x][(int)y] == '1')
+		return (0);
+	return (1);
 }
