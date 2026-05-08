@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:24:16 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/05/06 17:05:32 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/05/08 14:22:16 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	store_splitted(char *str, t_data *data, t_parse *parse,
 	if (!str)
 		return (1);
 	args = ft_split(str, ' ');
-	if (!args)
+	if (!args || args[2])
 		return (1);
 	if (args[0] && args[1] && !is_img(args[0]))
 	{

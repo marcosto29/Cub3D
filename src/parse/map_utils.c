@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 17:16:43 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/05/06 17:45:45 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/05/08 12:54:21 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	ft_count_ones(char *str, int flag)
 
 int	is_valid_char(char c)
 {
-	if (c != '0' && c != '1' && c != 'N' && c != 'O' && c != 'W' && c != 'S')
+	if (c != '0' && c != '1' && c != 'N' && c != 'E' && c != 'W' && c != 'S')
 		return (1);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 12:32:53 by matoledo          #+#    #+#             */
-/*   Updated: 2026/05/07 09:16:16 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/05/08 14:25:06 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,10 @@ void	update_position(t_player *p, char **w_map, t_dvector new_pos)
 	static char	previous_char = '0';
 	char		aux;
 	t_dvector	prev;
+	double		r;
 
 	prev = p->position;
+	r = p->hitbox_radius;
 	if (new_pos.x < 0)
 		new_pos.x = 0;
 	else if (new_pos.x >= get_map_height(w_map))
@@ -74,11 +76,9 @@ void	update_position(t_player *p, char **w_map, t_dvector new_pos)
 		new_pos.y = 0;
 	else if (new_pos.y >= ft_strlen(w_map[(int)new_pos.x]))
 		new_pos.y = ft_strlen(w_map[(int)new_pos.x]) - 1;
-	if (is_walkable(w_map, new_pos.x + p->hitbox_radius, p->position.y)
-		&& is_walkable(w_map, new_pos.x - p->hitbox_radius, p->position.y))
+	if (can_move(w_map, new_pos.x, p->position.y, r))
 		p->position.x = new_pos.x;
-	if (is_walkable(w_map, p->position.x, new_pos.y + p->hitbox_radius)
-		&& is_walkable(w_map, p->position.x, new_pos.y - p->hitbox_radius))
+	if (can_move(w_map, p->position.x, new_pos.y, r))
 		p->position.y = new_pos.y;
 	aux = w_map[(int)prev.x][(int)prev.y];
 	w_map[(int)prev.x][(int)prev.y] = previous_char;

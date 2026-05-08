@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 21:36:03 by matoledo          #+#    #+#             */
-/*   Updated: 2026/05/07 09:16:16 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/05/08 13:55:41 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ t_dvector	initial_position(char **worldMap)
 			if (worldMap[x][y] == 'N' || worldMap[x][y] == 'S' ||
 				worldMap[x][y] == 'E' || worldMap[x][y] == 'W')
 			{
-				position.x = x;
-				position.y = y;
+				position.x = x + 0.5;
+				position.y = y + 0.5;
 				return (position);
 			}
 			y++;
